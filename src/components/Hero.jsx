@@ -38,16 +38,23 @@ export default function Hero() {
         <div className="hero__fallback" aria-hidden="true" />
         <div className="hero__grid" aria-hidden="true" />
         <div className="hero__veil" aria-hidden="true" />
+        {/* 超大背景装饰字 */}
+        <span className="hero__watermark" aria-hidden="true">
+          PORTFOLIO
+        </span>
+        {/* 霓虹光斑 */}
+        <span className="hero__glow hero__glow--a" aria-hidden="true" />
+        <span className="hero__glow hero__glow--b" aria-hidden="true" />
       </div>
 
       <div className="container hero__content">
         <div className="hero__topline reveal">
-          <span className="hero__dot" />
-          <span data-edit="greeting">{profile.greeting}</span>
-          <span className="hero__line" />
-          <span className="hero__year" data-edit="heroYear">
+          <span className="hero__badge" data-edit="heroYear">
             {profile.heroYear}
           </span>
+          <span className="hero__line" />
+          <span className="hero__dot" />
+          <span data-edit="greeting">{profile.greeting}</span>
         </div>
 
         <h1 className="hero__title">
@@ -67,7 +74,17 @@ export default function Hero() {
           {profile.tagline}
         </p>
 
-        <div className="hero__actions reveal" style={{ '--d': '480ms' }}>
+        {/* 技能标签条 */}
+        <div className="hero__tags reveal" style={{ '--d': '430ms' }}>
+          {profile.heroTags.map((t, i) => (
+            <span className="hero__tag" key={t} data-edit={`heroTags.${i}`}>
+              <i>{String(i + 1).padStart(2, '0')}</i>
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div className="hero__actions reveal" style={{ '--d': '500ms' }}>
           <button className="btn btn--primary" onClick={() => go('works')}>
             查看作品
             <span className="btn__arrow">→</span>
