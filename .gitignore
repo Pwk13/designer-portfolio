@@ -1,0 +1,14 @@
+# 依赖与构建产物
+node_modules/
+dist/
+dist-single/
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
+
+# 本地工具（GitHub Pages 部署用，不入库）
+MinGit/
+gh/
+*.zip
