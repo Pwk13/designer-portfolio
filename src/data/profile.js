@@ -53,11 +53,78 @@ export const profile = {
 
   /* ---------- 项目数据（数字统计，源自简历） ---------- */
   stats: [
-    { value: 3, suffix: '段', label: '行业实习经历' },
-    { value: 3, suffix: '年', label: '视觉传达学习' },
-    { value: 9, suffix: '门', label: '核心专业课程' },
-    { value: 5, suffix: '类', label: '作品方向覆盖' },
+    { key: 'internships', value: 3, suffix: '段', label: '行业实习经历' },
+    { key: 'journey', value: 3, suffix: '年', label: '视觉传达学习' },
+    { key: 'courses', value: 9, suffix: '门', label: '核心专业课程' },
+    { key: 'directions', value: 5, suffix: '类', label: '作品方向覆盖' },
   ],
+
+  /* ---------- 统计详情（点击统计卡片可展开查看，编辑模式可改） ----------
+   * internships : 行业实习经历（3 段）
+   * journey     : 视觉传达学习（3 年）
+   * courses     : 核心专业课程（9 门）
+   * directions  : 作品方向（5 类，image 可引用 works 下任意作品图）
+   */
+  detail: {
+    internships: [
+      {
+        time: '2025.09 — 至今',
+        org: 'AIGC 漫剧项目组',
+        role: 'AIGC 美术设计（实习）',
+        desc: '负责漫剧分镜视觉化与美术交付：用 ComfyUI 搭建角色一致性管线，Kling / 即梦生成动态镜头，从脚本分镜到成片全流程跟进，保障画面质量与上线节奏。',
+      },
+      {
+        time: '2025.03 — 2025.08',
+        org: '短视频视觉团队',
+        role: '视觉设计师（实习）',
+        desc: '负责信息流短视频的封面、花字、转场与视觉包装，建立素材规范；结合 AIGC 产出高点击率创意视觉，支撑多条高播放量内容。',
+      },
+      {
+        time: '2024.06 — 2024.09',
+        org: '品牌设计工作室',
+        role: '平面设计师（实习）',
+        desc: '参与品牌 VI、海报与电商视觉设计，从市场调研、草图提案到完稿交付全流程跟进，独立完成多套品牌物料并落地使用。',
+      },
+    ],
+    journey: [
+      {
+        year: '第一年',
+        en: 'YEAR 01',
+        stage: '设计基础筑基',
+        desc: '系统学习平面构成、色彩构成、字体设计等基础课程，建立审美判断与执行基本功，完成大量构成与字体训练。',
+      },
+      {
+        year: '第二年',
+        en: 'YEAR 02',
+        stage: '专业方向深耕',
+        desc: '聚焦品牌设计、海报版式、插画与 UI/UX 方向，产出一批完整项目并沉淀为作品集雏形。',
+      },
+      {
+        year: '第三年',
+        en: 'YEAR 03',
+        stage: '商业项目实战',
+        desc: '进入 AIGC 美术与短视频视觉领域，参与商业化漫剧与短视频项目，打通「脚本-分镜-美术-成片」全流程。',
+      },
+    ],
+    courses: [
+      '平面构成',
+      '色彩构成',
+      '字体设计',
+      '版式设计',
+      '标志设计',
+      '海报设计',
+      '插画设计',
+      'UI / UX 设计',
+      '品牌形象设计',
+    ],
+    directions: [
+      { name: '品牌设计', en: 'BRAND DESIGN', desc: '标志 · VI · 包装系统', image: './assets/works/work-mooli.jpg' },
+      { name: '海报设计', en: 'POSTER DESIGN', desc: '活动 · 展览 · 主题海报', image: './assets/works/work-timescent.jpg' },
+      { name: '插画设计', en: 'ILLUSTRATION', desc: '主题插画 · 潮流涂鸦', image: './assets/works/work-reading.jpg' },
+      { name: 'UI / UX 设计', en: 'UI / UX DESIGN', desc: 'App 全案 · IP 系统', image: './assets/works/work-petapp.jpg' },
+      { name: 'AIGC 视觉', en: 'AIGC VISUAL', desc: '漫剧 · 动态 · 内容美术', image: './assets/works/work-aurora.jpg' },
+    ],
+  },
 
   /* ---------- 个人优势：能力模型（雷达图 + 进度条） ---------- */
   skills: [
