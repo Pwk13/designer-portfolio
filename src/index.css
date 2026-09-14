@@ -1840,12 +1840,6 @@ a {
   display: grid;
   place-items: center;
   background: #04060b;
-  cursor: grab;
-  touch-action: none;
-}
-
-.lightbox__stage:active {
-  cursor: grabbing;
 }
 
 .lightbox__img {
