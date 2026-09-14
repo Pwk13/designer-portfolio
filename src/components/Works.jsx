@@ -110,7 +110,7 @@ export default function Works() {
         </button>
 
         <div className="works__track" ref={trackRef}>
-          {list.map((w) => (
+          {list.map((w, i) => (
             <article className="work-card" key={w.id}>
               {editMode && (
                 <button
@@ -124,7 +124,15 @@ export default function Works() {
                 </button>
               )}
               <div className="work-card__media" onClick={() => openLightbox(w)}>
-                <img src={w.image} alt={w.title} loading="lazy" data-edit-img={`works.${w.id}.image`} />
+                <img
+                  src={w.image}
+                  alt={w.title}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={i === 0 ? 'high' : 'auto'}
+                  decoding="async"
+                  data-edit-img={`works.${w.id}.image`}
+                  onLoad={(e) => e.currentTarget.classList.add('is-loaded')}
+                />
                 <span className="work-card__zoom">⤢ 点击放大</span>
               </div>
               <div className="work-card__info">
