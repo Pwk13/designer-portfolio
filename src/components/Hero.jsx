@@ -111,7 +111,7 @@ export default function Hero() {
           <video
             className="hero__video"
             src="./assets/hero-bg.mp4"
-            poster="./assets/works/work-flux.jpg"
+            poster="./assets/works/work-mooli.webp"
             autoPlay
             muted
             loop

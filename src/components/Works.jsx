@@ -61,28 +61,33 @@ export default function Works() {
     if (trackRef.current) trackRef.current.scrollLeft = 0
   }, [filter])
 
-  /* 进入页面第一时间后台预加载全部作品图（滚到作品区时已缓存，立即显示） */
+  /* 进入页面第一时间后台预加载全部作品图（不等空闲、立即执行，滚到作品区时已缓存、秒出） */
   useEffect(() => {
     const urls = profile.works
       .map((w) => w.image)
-      .filter((u) => typeof u === 'string' && u.startsWith('http'))
+      .filter((u) => typeof u === 'string' && u.trim() !== '')
     const preload = () => {
       urls.forEach((u) => {
         const im = new Image()
+        try {
+          im.fetchPriority = 'high'
+        } catch (e) {
+          /* 旧浏览器忽略 */
+        }
         im.src = u
       })
     }
-    let id = null
-    if ('requestIdleCallback' in window) {
-      id = window.requestIdleCallback(preload, { timeout: 1500 })
-    } else {
-      id = setTimeout(preload, 250)
+    // 先让首屏（Hero/About）完成一次渲染，随后立即开始预加载
+    let id = setTimeout(preload, 60)
+    const onLoad = () => {
+      clearTimeout(id)
+      id = setTimeout(preload, 0)
     }
+    if (document.readyState === 'complete') onLoad()
+    else window.addEventListener('load', onLoad, { once: true })
     return () => {
-      if (id !== null) {
-        if ('cancelIdleCallback' in window) window.cancelIdleCallback(id)
-        else clearTimeout(id)
-      }
+      clearTimeout(id)
+      window.removeEventListener('load', onLoad)
     }
   }, [profile.works])
 
@@ -212,6 +217,14 @@ export default function Works() {
                   decoding="async"
                   data-edit-img={`works.${w.id}.image`}
                   onLoad={(e) => e.currentTarget.classList.add('is-loaded')}
+                  onError={(e) => {
+                    const s = e.currentTarget.src
+                    if (s.endsWith('.jpg') || s.endsWith('.jpeg')) {
+                      e.currentTarget.src = s.replace(/\.jpe?g$/i, '.webp')
+                    } else if (s.endsWith('.webp')) {
+                      e.currentTarget.src = s.replace(/\.webp$/i, '.jpg')
+                    }
+                  }}
                 />
                 <span className="work-card__zoom">⤢ 点击放大</span>
               </div>
