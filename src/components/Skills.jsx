@@ -110,6 +110,30 @@ function SkillBar({ skill, delay, index }) {
 /** 个人优势模块：能力可视化（雷达图 + 进度条 + 工具栈） */
 export default function Skills() {
   const { profile } = useEdit()
+  const tiltRef = useRef(null)
+
+  /* 能力卡 3D 倾斜 + 高光跟随（鼠标移动） */
+  useEffect(() => {
+    const el = tiltRef.current
+    if (!el) return
+    const onMove = (e) => {
+      const r = el.getBoundingClientRect()
+      const px = (e.clientX - r.left) / r.width - 0.5
+      const py = (e.clientY - r.top) / r.height - 0.5
+      el.style.transform = `perspective(900px) rotateY(${(px * 9).toFixed(2)}deg) rotateX(${(-py * 9).toFixed(2)}deg)`
+      el.style.setProperty('--gx', `${((px + 0.5) * 100).toFixed(1)}%`)
+      el.style.setProperty('--gy', `${((py + 0.5) * 100).toFixed(1)}%`)
+    }
+    const onLeave = () => {
+      el.style.transform = ''
+    }
+    el.addEventListener('mousemove', onMove, { passive: true })
+    el.addEventListener('mouseleave', onLeave)
+    return () => {
+      el.removeEventListener('mousemove', onMove)
+      el.removeEventListener('mouseleave', onLeave)
+    }
+  }, [])
 
   return (
     <div className="skills">
@@ -123,11 +147,13 @@ export default function Skills() {
 
         <div className="skills__grid">
           <Reveal className="skills__radar-box" delay={100}>
-            <div className="skills__box-title">
-              <span>能力模型</span>
-              <span className="skills__box-en">SKILL MATRIX</span>
+            <div className="skills__tilt" ref={tiltRef}>
+              <div className="skills__box-title">
+                <span>能力模型</span>
+                <span className="skills__box-en">SKILL MATRIX</span>
+              </div>
+              <Radar data={profile.skills} />
             </div>
-            <Radar data={profile.skills} />
           </Reveal>
 
           <div className="skills__right">

@@ -7,11 +7,15 @@ import Skills from './components/Skills'
 import Contact from './components/Contact'
 import DotNav from './components/DotNav'
 import EditToolbar from './components/EditToolbar'
+import CursorFX from './components/CursorFX'
+import ScrollProgress from './components/ScrollProgress'
 
 export default function App() {
   return (
     <EditProvider>
       <div className="site">
+        <ScrollProgress />
+        <CursorFX />
         <Navbar />
         <main>
           <section id="hero" className="page-section">
