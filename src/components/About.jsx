@@ -151,7 +151,7 @@ function Stat({ item, index, onClick, editMode }) {
       type="button"
       className="stat"
       ref={ref}
-      onClick={() => !editMode && onClick(item.key)}
+      onClick={() => onClick(item.key)}
       aria-haspopup="dialog"
     >
       <div className="stat__num">

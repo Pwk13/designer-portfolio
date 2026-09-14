@@ -178,6 +178,8 @@ export function EditProvider({ children }) {
       }
       const el = e.target.closest('[data-edit]')
       if (!el || el.isContentEditable) return
+      // 统计卡片（行业实习经历/视觉传达学习/核心专业课程等）交给 React 打开详情弹窗，不在卡片上直接编辑
+      if (el.closest('.stat')) return
       e.preventDefault()
       e.stopPropagation()
       makeEditable(el)
@@ -187,11 +189,11 @@ export function EditProvider({ children }) {
       if (e.key === 'Escape') setEditMode(false)
     }
 
-    document.addEventListener('click', onClick)
+    document.addEventListener('click', onClick, true)
     document.addEventListener('keydown', onKeyEsc)
     return () => {
       document.body.classList.remove('edit-mode')
-      document.removeEventListener('click', onClick)
+      document.removeEventListener('click', onClick, true)
       document.removeEventListener('keydown', onKeyEsc)
     }
   }, [editMode, save])
