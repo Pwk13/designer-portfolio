@@ -94,8 +94,50 @@ export default function Works() {
   }, [])
 
   const scrollBy = (dx) => trackRef.current?.scrollBy({ left: dx, behavior: 'smooth' })
+
+  /* 灯箱：滚轮缩放 + 放大后拖拽平移 */
+  const [zoom, setZoom] = useState(1)
+  const [pan, setPan] = useState({ x: 0, y: 0 })
+  const zoomRef = useRef(1)
+  const dragRef = useRef(null)
+
+  useEffect(() => {
+    if (!selected) return
+    const onWheel = (e) => {
+      if (!e.target.closest || !e.target.closest('.lightbox')) return
+      e.preventDefault()
+      const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15
+      zoomRef.current = Math.min(5, Math.max(0.5, zoomRef.current * factor))
+      setZoom(zoomRef.current)
+    }
+    document.addEventListener('wheel', onWheel, { passive: false })
+    return () => document.removeEventListener('wheel', onWheel)
+  }, [selected])
+
   const openLightbox = (w) => {
-    if (!editMode) setSelected(w)
+    if (editMode) return
+    zoomRef.current = 1
+    setZoom(1)
+    setPan({ x: 0, y: 0 })
+    setSelected(w)
+  }
+
+  const onStageDown = (e) => {
+    if (zoomRef.current <= 1.01) return
+    dragRef.current = { sx: e.clientX - pan.x, sy: e.clientY - pan.y }
+  }
+  const onStageMove = (e) => {
+    if (!dragRef.current) return
+    const d = dragRef.current
+    setPan({ x: e.clientX - d.sx, y: e.clientY - d.sy })
+  }
+  const onStageUp = () => {
+    dragRef.current = null
+  }
+  const resetZoom = () => {
+    zoomRef.current = 1
+    setZoom(1)
+    setPan({ x: 0, y: 0 })
   }
 
   const onAddCategory = () => {
@@ -250,14 +292,36 @@ export default function Works() {
         <p className="works__hint">滚动鼠标滚轮或按住拖拽横向浏览 · 点击图片放大查看</p>
       </div>
 
-      {/* 点击放大（灯箱） */}
+      {/* 点击放大（灯箱）：滚轮缩放 / 拖拽平移 / 双击复原 */}
       {selected && (
         <div className="lightbox" onClick={() => setSelected(null)} role="dialog" aria-modal="true">
           <div className="lightbox__card" onClick={(e) => e.stopPropagation()}>
             <button className="lightbox__close" onClick={() => setSelected(null)} aria-label="关闭">
               ×
             </button>
-            <img className="lightbox__img" src={selected.image} alt={selected.title} />
+            <div
+              className="lightbox__stage"
+              onPointerDown={onStageDown}
+              onPointerMove={onStageMove}
+              onPointerUp={onStageUp}
+              onPointerLeave={onStageUp}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                className="lightbox__img"
+                src={selected.image}
+                alt={selected.title}
+                style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}
+                onDoubleClick={resetZoom}
+                draggable={false}
+              />
+              <span className="lightbox__zoom" aria-hidden="true">
+                {Math.round(zoom * 100)}%
+              </span>
+              <span className="lightbox__tip" aria-hidden="true">
+                滚轮缩放 · 拖拽查看细节 · 双击复原
+              </span>
+            </div>
             <div className="lightbox__info">
               <div className="work-card__tags">
                 <span className="work-card__cat">{selected.category}</span>
