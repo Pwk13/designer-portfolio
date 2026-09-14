@@ -137,6 +137,8 @@ export default function Works() {
 
   useEffect(() => {
     if (!selected) return
+    // 打开灯箱后立即按 100% 完整大小适配（图片可能已在缓存中，onLoad 不一定触发）
+    const t = requestAnimationFrame(measureFit)
     const onWheel = (e) => {
       if (!e.target.closest || !e.target.closest('.lightbox')) return
       e.preventDefault()
@@ -145,7 +147,8 @@ export default function Works() {
       const rect = stage.getBoundingClientRect()
       const m = { x: e.clientX - rect.left, y: e.clientY - rect.top }
       const z0 = zoomRef.current
-      const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12
+      // 向前滚动（deltaY > 0）= 放大，向后滚动 = 缩小
+      const factor = e.deltaY > 0 ? 1.12 : 1 / 1.12
       const z1 = Math.min(2, Math.max(0.4, z0 * factor))
       if (z1 === z0) return
       const p0 = panRef.current
@@ -161,6 +164,7 @@ export default function Works() {
     document.addEventListener('wheel', onWheel, { passive: false })
     window.addEventListener('resize', measureFit)
     return () => {
+      cancelAnimationFrame(t)
       document.removeEventListener('wheel', onWheel)
       window.removeEventListener('resize', measureFit)
     }
@@ -408,7 +412,7 @@ export default function Works() {
                 </button>
               </div>
               <span className="lightbox__tip" aria-hidden="true">
-                滚轮整体缩放 · 放大后可拖拽查看 · 双击复原
+                向前滚动放大 · 向后滚动缩小 · 双击复原
               </span>
             </div>
             <div className="lightbox__info">
