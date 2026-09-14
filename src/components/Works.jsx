@@ -61,6 +61,31 @@ export default function Works() {
     if (trackRef.current) trackRef.current.scrollLeft = 0
   }, [filter])
 
+  /* 进入页面第一时间后台预加载全部作品图（滚到作品区时已缓存，立即显示） */
+  useEffect(() => {
+    const urls = profile.works
+      .map((w) => w.image)
+      .filter((u) => typeof u === 'string' && u.startsWith('http'))
+    const preload = () => {
+      urls.forEach((u) => {
+        const im = new Image()
+        im.src = u
+      })
+    }
+    let id = null
+    if ('requestIdleCallback' in window) {
+      id = window.requestIdleCallback(preload, { timeout: 1500 })
+    } else {
+      id = setTimeout(preload, 250)
+    }
+    return () => {
+      if (id !== null) {
+        if ('cancelIdleCallback' in window) window.cancelIdleCallback(id)
+        else clearTimeout(id)
+      }
+    }
+  }, [profile.works])
+
   /* Esc 关闭放大 */
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && setSelected(null)
