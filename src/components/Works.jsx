@@ -95,124 +95,9 @@ export default function Works() {
 
   const scrollBy = (dx) => trackRef.current?.scrollBy({ left: dx, behavior: 'smooth' })
 
-  /* 灯箱：整体缩放（鼠标锚点 40%–200%，整图等比缩放，放大后可拖拽查看） */
-  const [zoom, setZoom] = useState(1)
-  const [pan, setPan] = useState({ x: 0, y: 0 })
-  const zoomRef = useRef(1)
-  const panRef = useRef({ x: 0, y: 0 })
-  const fitRef = useRef({ w: 0, h: 0 })
-  const stageRef = useRef(null)
-  const imgRef = useRef(null)
-  const dragRef = useRef(null)
-
-  /* 测量图片在 100% 时的显示尺寸并居中 */
-  const measureFit = () => {
-    const stage = stageRef.current
-    const img = imgRef.current
-    if (!stage || !img) return
-    const sw = stage.clientWidth
-    const sh = stage.clientHeight
-    const nw = img.naturalWidth
-    const nh = img.naturalHeight
-    if (!sw || !sh || !nw || !nh) return
-    const s = Math.min(sw / nw, sh / nh)
-    fitRef.current = { w: Math.round(nw * s), h: Math.round(nh * s) }
-    panRef.current = { x: Math.round((sw - nw * s) / 2), y: Math.round((sh - nh * s) / 2) }
-    setPan(panRef.current)
-  }
-
-  /* 限制平移范围：图片不脱离可视区域（放大时留边、缩小时居中） */
-  const clampPan = (p, z) => {
-    const stage = stageRef.current
-    if (!stage) return p
-    const { w, h } = fitRef.current
-    const sw = stage.clientWidth
-    const sh = stage.clientHeight
-    const vw = w * z
-    const vh = h * z
-    const x = vw <= sw ? (sw - vw) / 2 : Math.min(0, Math.max(sw - vw, p.x))
-    const y = vh <= sh ? (sh - vh) / 2 : Math.min(0, Math.max(sh - vh, p.y))
-    return { x, y }
-  }
-
-  useEffect(() => {
-    if (!selected) return
-    // 打开灯箱后立即按 100% 完整大小适配（图片可能已在缓存中，onLoad 不一定触发）
-    const t = requestAnimationFrame(measureFit)
-    const onWheel = (e) => {
-      if (!e.target.closest || !e.target.closest('.lightbox')) return
-      e.preventDefault()
-      const stage = stageRef.current
-      if (!stage) return
-      const rect = stage.getBoundingClientRect()
-      const m = { x: e.clientX - rect.left, y: e.clientY - rect.top }
-      const z0 = zoomRef.current
-      // 向前滚动（deltaY > 0）= 放大，向后滚动 = 缩小
-      const factor = e.deltaY > 0 ? 1.12 : 1 / 1.12
-      const z1 = Math.min(2, Math.max(0.4, z0 * factor))
-      if (z1 === z0) return
-      const p0 = panRef.current
-      const p1 = {
-        x: m.x - ((m.x - p0.x) * z1) / z0,
-        y: m.y - ((m.y - p0.y) * z1) / z0,
-      }
-      zoomRef.current = z1
-      panRef.current = clampPan(p1, z1)
-      setZoom(z1)
-      setPan(panRef.current)
-    }
-    document.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('resize', measureFit)
-    return () => {
-      cancelAnimationFrame(t)
-      document.removeEventListener('wheel', onWheel)
-      window.removeEventListener('resize', measureFit)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected])
-
   const openLightbox = (w) => {
     if (editMode) return
-    zoomRef.current = 1
-    setZoom(1)
     setSelected(w)
-  }
-
-  const onStageDown = (e) => {
-    if (zoomRef.current <= 1.02) return
-    dragRef.current = { sx: e.clientX - panRef.current.x, sy: e.clientY - panRef.current.y }
-  }
-  const onStageMove = (e) => {
-    if (!dragRef.current) return
-    const d = dragRef.current
-    panRef.current = clampPan({ x: e.clientX - d.sx, y: e.clientY - d.sy }, zoomRef.current)
-    setPan(panRef.current)
-  }
-  const onStageUp = () => {
-    dragRef.current = null
-  }
-  const zoomBy = (factor) => {
-    const stage = stageRef.current
-    if (!stage) return
-    const rect = stage.getBoundingClientRect()
-    const m = { x: rect.width / 2, y: rect.height / 2 }
-    const z0 = zoomRef.current
-    const z1 = Math.min(2, Math.max(0.4, z0 * factor))
-    if (z1 === z0) return
-    const p0 = panRef.current
-    const p1 = {
-      x: m.x - ((m.x - p0.x) * z1) / z0,
-      y: m.y - ((m.y - p0.y) * z1) / z0,
-    }
-    zoomRef.current = z1
-    panRef.current = clampPan(p1, z1)
-    setZoom(z1)
-    setPan(panRef.current)
-  }
-  const resetZoom = () => {
-    zoomRef.current = 1
-    measureFit()
-    setZoom(1)
   }
 
   const onAddCategory = () => {
@@ -367,53 +252,15 @@ export default function Works() {
         <p className="works__hint">滚动鼠标滚轮或按住拖拽横向浏览 · 点击图片放大查看</p>
       </div>
 
-      {/* 点击放大（灯箱）：鼠标锚点整体缩放 40%–200% / 拖拽查看 / 双击复原 */}
+      {/* 点击放大（灯箱）：大占比展示（图片占弹窗 80% 以上） */}
       {selected && (
         <div className="lightbox" onClick={() => setSelected(null)} role="dialog" aria-modal="true">
           <div className="lightbox__card" onClick={(e) => e.stopPropagation()}>
             <button className="lightbox__close" onClick={() => setSelected(null)} aria-label="关闭">
               ×
             </button>
-            <div
-              ref={stageRef}
-              className="lightbox__stage"
-              onPointerDown={onStageDown}
-              onPointerMove={onStageMove}
-              onPointerUp={onStageUp}
-              onPointerLeave={onStageUp}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                ref={imgRef}
-                className="lightbox__img"
-                src={selected.image}
-                alt={selected.title}
-                onLoad={measureFit}
-                style={{
-                  width: fitRef.current.w ? `${fitRef.current.w}px` : 'auto',
-                  height: fitRef.current.h ? `${fitRef.current.h}px` : 'auto',
-                  transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-                }}
-                onDoubleClick={resetZoom}
-                draggable={false}
-              />
-              <span className="lightbox__zoom" aria-hidden="true">
-                {Math.round(zoom * 100)}%
-              </span>
-              <div className="lightbox__controls" aria-label="缩放控制">
-                <button type="button" onClick={() => zoomBy(1 / 1.2)} aria-label="缩小">
-                  −
-                </button>
-                <button type="button" className="lightbox__controls-fit" onClick={resetZoom} aria-label="适应窗口">
-                  适应
-                </button>
-                <button type="button" onClick={() => zoomBy(1.2)} aria-label="放大">
-                  ＋
-                </button>
-              </div>
-              <span className="lightbox__tip" aria-hidden="true">
-                向前滚动放大 · 向后滚动缩小 · 双击复原
-              </span>
+            <div className="lightbox__stage">
+              <img className="lightbox__img" src={selected.image} alt={selected.title} />
             </div>
             <div className="lightbox__info">
               <div className="work-card__tags">
