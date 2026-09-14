@@ -4,11 +4,14 @@ import Reveal from './Reveal'
 
 /** 项目展示模块：横屏平滑滚动作品墙 + 点击放大 + 设计说明 + 编辑增删 */
 export default function Works() {
-  const { profile, editMode, removeWork, addCategory } = useEdit()
+  const { profile, editMode, removeWork, addCategory, addWork } = useEdit()
   const [filter, setFilter] = useState('全部')
   const [selected, setSelected] = useState(null) // 点击放大的作品
+  const [addOpen, setAddOpen] = useState(false) // 添加作品弹窗
+  const [form, setForm] = useState({ image: '', title: '', category: '', year: '', desc: '', note: '' })
   const rootRef = useRef(null)
   const trackRef = useRef(null)
+  const fileRef = useRef(null)
 
   const FILTERS = profile.categories
   const list = filter === '全部' ? profile.works : profile.works.filter((w) => w.category === filter)
@@ -74,6 +77,56 @@ export default function Works() {
     const name = (window.prompt('新分类名称：') || '').trim()
     if (!name) return
     addCategory(name)
+  }
+
+  /* 本地图片 → 压缩后 dataURL（控制体积，避免撑爆 localStorage） */
+  const onPickFile = (e) => {
+    const f = e.target.files && e.target.files[0]
+    e.target.value = ''
+    if (!f) return
+    const reader = new FileReader()
+    reader.onload = () => {
+      const img = new Image()
+      img.onload = () => {
+        const MAX = 1000
+        const scale = Math.min(1, MAX / Math.max(img.width, img.height))
+        const w = Math.round(img.width * scale)
+        const h = Math.round(img.height * scale)
+        const canvas = document.createElement('canvas')
+        canvas.width = w
+        canvas.height = h
+        const ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0, w, h)
+        const isPng = (f.type || '').includes('png')
+        const dataUrl = isPng ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.82)
+        setForm((p) => ({ ...p, image: dataUrl }))
+      }
+      img.src = reader.result
+    }
+    reader.readAsDataURL(f)
+  }
+
+  const openAdd = () => {
+    setForm({ image: '', title: '', category: filter === '全部' ? '' : filter, year: String(new Date().getFullYear()), desc: '', note: '' })
+    setAddOpen(true)
+  }
+
+  const submitAdd = () => {
+    if (!form.title.trim()) return alert('请填写作品名称')
+    if (!form.image.trim()) return alert('请选择或填写作品图片')
+    addWork({
+      id: `w-${Date.now()}`,
+      image: form.image,
+      title: form.title.trim(),
+      category: form.category.trim() || '作品',
+      year: form.year.trim() || String(new Date().getFullYear()),
+      desc: form.desc.trim() || '新作品简介',
+      note: form.note.trim() || '',
+    })
+    setAddOpen(false)
+    // 若新增了自定义分类，自动补进分类列表
+    const cat = form.category.trim()
+    if (cat && !profile.categories.includes(cat)) addCategory(cat)
   }
 
   return (
@@ -154,6 +207,15 @@ export default function Works() {
               </div>
             </article>
           ))}
+
+          {/* 编辑模式：每类作品末尾的「添加作品」卡片 */}
+          {editMode && (
+            <button className="work-card work-card--add" onClick={openAdd} title="添加作品">
+              <span className="work-card--add__plus">＋</span>
+              <span className="work-card--add__text">添加作品</span>
+              <span className="work-card--add__hint">图片 · 标题 · 分类 · 说明</span>
+            </button>
+          )}
         </div>
 
         <button className="works__arrow works__arrow--next" onClick={() => scrollBy(640)} aria-label="向右滚动">
@@ -178,6 +240,90 @@ export default function Works() {
               </div>
               <h3 className="lightbox__title">{selected.title}</h3>
               <p className="lightbox__note">{selected.note}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 添加作品弹窗 */}
+      {addOpen && (
+        <div className="addwork" onClick={() => setAddOpen(false)} role="dialog" aria-modal="true">
+          <div className="addwork__card" onClick={(e) => e.stopPropagation()}>
+            <button className="addwork__close" onClick={() => setAddOpen(false)} aria-label="关闭">
+              ×
+            </button>
+            <div className="addwork__head">
+              <span className="addwork__tag">ADD WORK</span>
+              <h3 className="addwork__title">添加作品</h3>
+            </div>
+
+            {/* 图片：点击预览区选择本地文件，或填写图片链接 */}
+            <div className="addwork__img" onClick={() => fileRef.current?.click()} title="点击选择本地图片">
+              {form.image ? (
+                <img src={form.image} alt="预览" />
+              ) : (
+                <span className="addwork__img-placeholder">＋ 点击选择图片</span>
+              )}
+            </div>
+            <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={onPickFile} />
+            <input
+              className="addwork__field"
+              placeholder="或直接粘贴图片链接（https://…）"
+              value={form.image.startsWith('data:') ? '' : form.image}
+              onChange={(e) => setForm((p) => ({ ...p, image: e.target.value }))}
+            />
+
+            <div className="addwork__row">
+              <input
+                className="addwork__field"
+                placeholder="作品名称 *"
+                value={form.title}
+                onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
+              />
+              <input
+                className="addwork__field addwork__field--sm"
+                placeholder="年份"
+                value={form.year}
+                onChange={(e) => setForm((p) => ({ ...p, year: e.target.value }))}
+              />
+            </div>
+
+            <div className="addwork__row">
+              <input
+                className="addwork__field"
+                list="addwork-cats"
+                placeholder="分类（可选已有或输入新分类）"
+                value={form.category}
+                onChange={(e) => setForm((p) => ({ ...p, category: e.target.value }))}
+              />
+              <datalist id="addwork-cats">
+                {profile.categories.map((c) => (
+                  <option key={c} value={c} />
+                ))}
+              </datalist>
+            </div>
+
+            <input
+              className="addwork__field"
+              placeholder="一句话简介"
+              value={form.desc}
+              onChange={(e) => setForm((p) => ({ ...p, desc: e.target.value }))}
+            />
+            <textarea
+              className="addwork__field addwork__field--area"
+              placeholder="设计说明（200 字以内，可留空）"
+              rows={3}
+              value={form.note}
+              onChange={(e) => setForm((p) => ({ ...p, note: e.target.value }))}
+            />
+
+            <div className="addwork__actions">
+              <button className="btn btn--ghost" onClick={() => setAddOpen(false)}>
+                取消
+              </button>
+              <button className="btn btn--primary" onClick={submitAdd}>
+                添加作品
+              </button>
             </div>
           </div>
         </div>

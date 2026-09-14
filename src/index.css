@@ -2557,3 +2557,192 @@ body.edit-mode [data-edit-img]:hover {
     transition-duration: 0.001s !important;
   }
 }
+
+/* ---------- 编辑模式：添加作品卡片 ---------- */
+.work-card--add {
+  flex: 0 0 clamp(300px, 30vw, 460px);
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 540px;
+  border: 1.5px dashed rgba(182, 255, 58, 0.38) !important;
+  background: rgba(182, 255, 58, 0.03) !important;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.35s var(--ease) !important;
+}
+
+.work-card--add:hover {
+  border-color: rgba(182, 255, 58, 0.75) !important;
+  background: rgba(182, 255, 58, 0.06) !important;
+  color: var(--lime);
+  transform: translateY(-6px) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 34px rgba(182, 255, 58, 0.1) !important;
+}
+
+.work-card--add__plus {
+  font-size: 46px;
+  line-height: 1;
+  color: var(--lime);
+  text-shadow: 0 0 24px rgba(182, 255, 58, 0.55);
+}
+
+.work-card--add__text {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.work-card--add__hint {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+/* ---------- 添加作品弹窗 ---------- */
+.addwork {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(3, 4, 8, 0.78);
+  backdrop-filter: blur(14px);
+  animation: fadeIn 0.25s var(--ease);
+}
+
+.addwork__card {
+  position: relative;
+  width: min(600px, 94vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 34px;
+  border-radius: var(--radius);
+  background: linear-gradient(170deg, #0d1220, #070a12);
+  border: 1px solid rgba(182, 255, 58, 0.22);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 60px rgba(79, 224, 184, 0.08);
+}
+
+.addwork__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-2);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.addwork__close:hover {
+  color: #fff;
+  border-color: rgba(255, 90, 90, 0.6);
+  background: rgba(255, 90, 90, 0.1);
+}
+
+.addwork__head {
+  margin-bottom: 22px;
+}
+
+.addwork__tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  color: var(--cyan);
+}
+
+.addwork__title {
+  margin-top: 6px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.addwork__img {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px dashed rgba(255, 255, 255, 0.18);
+  background: linear-gradient(160deg, rgba(182, 255, 58, 0.04), transparent 55%), #05070c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+
+.addwork__img:hover {
+  border-color: rgba(182, 255, 58, 0.55);
+}
+
+.addwork__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.addwork__img-placeholder {
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+.addwork__field {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 10px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.addwork__field:focus {
+  border-color: rgba(182, 255, 58, 0.55);
+  box-shadow: 0 0 0 3px rgba(182, 255, 58, 0.08);
+}
+
+.addwork__field--sm {
+  flex: 0 0 130px !important;
+}
+
+.addwork__field--area {
+  resize: vertical;
+  min-height: 76px;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.addwork__row {
+  display: flex;
+  gap: 10px;
+}
+
+.addwork__row .addwork__field {
+  flex: 1;
+}
+
+.addwork__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
