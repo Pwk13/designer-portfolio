@@ -1,20 +1,24 @@
 import { useEdit } from '../context/EditContext'
+import { fileToDataUrl } from '../utils/image'
 
-/** 编辑模式浮动工具栏：添加作品 / 添加分类 / 导出 / 导入 / 恢复默认 */
+/** 编辑模式浮动工具栏：添加作品 / 添加分类 / 导出 / 导入 / 恢复默认 / 同步到线上 */
 export default function EditToolbar() {
-  const { profile, editMode, exportJSON, resetAll, importJSON, addWork, addCategory } = useEdit()
+  const { profile, editMode, exportJSON, resetAll, importJSON, addWork, addCategory, savedAt, saveFailed } = useEdit()
   if (!editMode) return null
 
   const pickImage = (cb) => {
     const input = document.createElement('input')
     input.type = 'file'
     input.accept = 'image/*'
-    input.onchange = () => {
+    input.onchange = async () => {
       const f = input.files && input.files[0]
       if (!f) return
-      const reader = new FileReader()
-      reader.onload = () => cb(reader.result)
-      reader.readAsDataURL(f)
+      try {
+        const url = await fileToDataUrl(f, 1600, 0.82)
+        cb(url)
+      } catch {
+        alert('图片处理失败：请换一张图片重试。')
+      }
     }
     input.click()
   }
@@ -62,13 +66,28 @@ export default function EditToolbar() {
     input.click()
   }
 
+  const onSync = () => {
+    exportJSON()
+    alert('已下载「portfolio-edit.json」。\n\n同步到线上：把这个文件发送给豆包助手，我会帮你重新部署，之后任何人在任何设备打开网站都能看到这些修改。')
+  }
+
   return (
     <div className="edit-toolbar">
       <span className="edit-toolbar__hint">编辑模式：点文字直接改 / 点图片可换 / Enter 保存，Esc 取消</span>
+      {saveFailed ? (
+        <span className="edit-toolbar__status edit-toolbar__status--err">⚠ 保存失败，请点「导出修改」备份后告诉我</span>
+      ) : savedAt ? (
+        <span className="edit-toolbar__status">✓ 已自动保存 {new Date(savedAt).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })}</span>
+      ) : (
+        <span className="edit-toolbar__status">修改将自动保存在本机浏览器</span>
+      )}
       <button onClick={onAddWork}>＋ 添加作品</button>
       <button onClick={onAddCategory}>＋ 添加分类</button>
       <button onClick={exportJSON}>导出修改</button>
       <button onClick={onImport}>导入修改</button>
+      <button onClick={onSync} className="edit-toolbar__sync">
+        📤 同步到线上
+      </button>
       <button
         onClick={() => {
           if (window.confirm('确定恢复默认内容？所有修改将丢失。')) resetAll()

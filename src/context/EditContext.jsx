@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import { profile as defaults } from '../data/profile'
+import { storeGet, storeSet, storeRemove, migrateLegacy, LS_KEY_EDIT } from '../utils/store'
+import { fileToDataUrl } from '../utils/image'
 
-const STORAGE_KEY = 'portfolio-edit-v1'
 const EditContext = createContext(null)
 
 function deepGet(obj, path) {
@@ -22,49 +23,76 @@ function mergeOverrides(base, over) {
   Object.entries(over || {}).forEach(([p, v]) => deepSet(out, p, v))
   return out
 }
-function loadOverrides() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : {}
-  } catch {
-    return {}
-  }
-}
 
 export function EditProvider({ children }) {
-  const [overrides, setOverrides] = useState(loadOverrides)
+  const [overrides, setOverrides] = useState({})
+  const [loaded, setLoaded] = useState(false)
   const [editMode, setEditMode] = useState(false)
+  const [savedAt, setSavedAt] = useState(null)
+  const [saveFailed, setSaveFailed] = useState(false)
   const profileRef = useRef(defaults)
-  const profile = useMemo(() => mergeOverrides(defaults, overrides), [overrides])
+  const profile = useMemo(() => (loaded ? mergeOverrides(defaults, overrides) : defaults), [overrides, loaded])
   profileRef.current = profile
 
-  const save = useCallback((path, value) => {
-    setOverrides((prev) => {
-      const next = { ...prev, [path]: value }
+  // 启动时：迁移旧数据 → 读取持久化修改
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+        await migrateLegacy()
+        const data = await storeGet(LS_KEY_EDIT)
+        if (!cancelled) {
+          if (data && typeof data === 'object') setOverrides(data)
+          setLoaded(true)
+        }
       } catch {
-        alert('浏览器存储空间不足：请先点「导出修改」保存到文件，再删除部分图片修改。')
+        if (!cancelled) setLoaded(true)
       }
-      return next
-    })
-  }, [])
-
-  const resetAll = useCallback(() => {
-    localStorage.removeItem(STORAGE_KEY)
-    setOverrides({})
-  }, [])
-
-  const importJSON = useCallback((text) => {
-    try {
-      const data = JSON.parse(text)
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-      setOverrides(data)
-      return true
-    } catch {
-      return false
+    })()
+    return () => {
+      cancelled = true
     }
   }, [])
+
+  /** 写持久化：IndexedDB → localStorage 降级；返回是否成功 */
+  const persist = useCallback(async (next) => {
+    const ok = await storeSet(LS_KEY_EDIT, next)
+    setSaveFailed(!ok)
+    if (ok) setSavedAt(Date.now())
+    return ok
+  }, [])
+
+  const save = useCallback(
+    (path, value) => {
+      setOverrides((prev) => {
+        const next = { ...prev, [path]: value }
+        persist(next)
+        return next
+      })
+    },
+    [persist],
+  )
+
+  const resetAll = useCallback(() => {
+    storeRemove(LS_KEY_EDIT)
+    setOverrides({})
+    setSavedAt(null)
+    setSaveFailed(false)
+  }, [])
+
+  const importJSON = useCallback(
+    (text) => {
+      try {
+        const data = JSON.parse(text)
+        setOverrides(data)
+        persist(data)
+        return true
+      } catch {
+        return false
+      }
+    },
+    [persist],
+  )
 
   const exportJSON = useCallback(() => {
     const blob = new Blob([JSON.stringify(overrides, null, 2)], { type: 'application/json' })
@@ -75,44 +103,53 @@ export function EditProvider({ children }) {
     URL.revokeObjectURL(a.href)
   }, [overrides])
 
-  const persist = (next) => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
-    } catch {
-      alert('浏览器存储空间不足：请先点「导出修改」保存到文件，再删除部分图片修改。')
-    }
-    return next
-  }
-
   /* 添加作品：以当前（含已修改的）作品列表为基准追加 */
-  const addWork = useCallback((work) => {
-    setOverrides((prev) => persist({ ...prev, works: [...profileRef.current.works, work] }))
-  }, [])
+  const addWork = useCallback(
+    (work) => {
+      setOverrides((prev) => {
+        const next = { ...prev, works: [...profileRef.current.works, work] }
+        persist(next)
+        return next
+      })
+    },
+    [persist],
+  )
 
   /* 删除作品：移除对应作品，并清理该作品残留的单点修改 */
-  const removeWork = useCallback((id) => {
-    setOverrides((prev) => {
-      const next = {}
-      Object.entries(prev).forEach(([p, v]) => {
-        if (p === 'works') {
-          next.works = v.filter((w) => w.id !== id)
-        } else if (!p.startsWith(`works.${id}.`)) {
-          next[p] = v
-        }
+  const removeWork = useCallback(
+    (id) => {
+      setOverrides((prev) => {
+        const next = {}
+        Object.entries(prev).forEach(([p, v]) => {
+          if (p === 'works') {
+            next.works = v.filter((w) => w.id !== id)
+          } else if (!p.startsWith(`works.${id}.`)) {
+            next[p] = v
+          }
+        })
+        if (!next.works) next.works = profileRef.current.works.filter((w) => w.id !== id)
+        persist(next)
+        return next
       })
-      if (!next.works) next.works = profileRef.current.works.filter((w) => w.id !== id)
-      return persist(next)
-    })
-  }, [])
+    },
+    [persist],
+  )
 
   /* 添加作品分类（去重） */
-  const addCategory = useCallback((name) => {
-    const list = [...profileRef.current.categories]
-    if (!list.includes(name)) list.push(name)
-    setOverrides((prev) => persist({ ...prev, categories: list }))
-  }, [])
+  const addCategory = useCallback(
+    (name) => {
+      const list = [...profileRef.current.categories]
+      if (!list.includes(name)) list.push(name)
+      setOverrides((prev) => {
+        const next = { ...prev, categories: list }
+        persist(next)
+        return next
+      })
+    },
+    [persist],
+  )
 
-  /* 编辑模式下的全局交互：文字就地编辑 / 图片点击更换 */
+  /* 编辑模式下的全局交互：文字就地编辑 / 图片点击压缩后替换 */
   useEffect(() => {
     document.body.classList.toggle('edit-mode', editMode)
     if (!editMode) return
@@ -121,12 +158,15 @@ export function EditProvider({ children }) {
       const input = document.createElement('input')
       input.type = 'file'
       input.accept = 'image/*'
-      input.onchange = () => {
+      input.onchange = async () => {
         const f = input.files && input.files[0]
         if (!f) return
-        const reader = new FileReader()
-        reader.onload = () => save(el.dataset.editImg, reader.result)
-        reader.readAsDataURL(f)
+        try {
+          const url = await fileToDataUrl(f, 1600, 0.82)
+          save(el.dataset.editImg, url)
+        } catch {
+          alert('图片处理失败：请换一张图片重试。')
+        }
       }
       input.click()
     }
@@ -199,8 +239,8 @@ export function EditProvider({ children }) {
   }, [editMode, save])
 
   const value = useMemo(
-    () => ({ profile, editMode, setEditMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, addCategory }),
-    [profile, editMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, addCategory],
+    () => ({ profile, editMode, setEditMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, addCategory, savedAt, saveFailed }),
+    [profile, editMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, addCategory, savedAt, saveFailed],
   )
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>
