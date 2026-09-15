@@ -8,586 +8,657 @@
 // =====================================================================
 
 export const profile = {
-  /* ---------- 基本信息 ---------- */
-  name: '彭文凯',              // 姓名（中文）
-  nameEn: 'PENG WENKAI',       // 姓名（英文）
-  role: '平面视觉设计师',       // 职业身份（Hero 大标题）
-  roleEn: 'GRAPHIC / VISUAL DESIGNER',
-  heroEn: 'VISUAL DESIGNER',   // Hero 大标题英文（渐变字）
-  greeting: 'HELLO / 你好',    // Hero 问候语
-  heroYear: 'PORTFOLIO / 2026',
-  ctaText: '与我合作',          // 导航栏按钮文案
-  tagline: '以平面视觉为原点，用 AIGC 放大创意——让每一帧画面都有生命力',
-
-  /* ---------- Hero 技能标签条（首屏潮牌风小标签，可编辑） ---------- */
-  heroTags: ['AIGC 美术', '品牌设计', '海报版式', '插画图形', 'UI / UX', '动态视觉'],
-
-  /* ---------- 个人形象（关于区背景行走角色，透明抠图 + 打招呼交互） ---------- */
-  walker: {
-    img1: './assets/works/char-trend-1.webp', // 行走第 1 帧（透明底）
-    img2: './assets/works/char-trend-2.webp', // 行走第 2 帧（透明底）
-    wave: './assets/works/char-wave.webp',    // 挥手打招呼（透明底）
-    hello: '你好！',                          // 鼠标悬停时显示的问候语
+  "name": "彭文凯",
+  "nameEn": "PENG WENKAI",
+  "role": "平面视觉设计师",
+  "roleEn": "GRAPHIC / VISUAL DESIGNER",
+  "heroEn": "VISUAL DESIGNER",
+  "greeting": "HELLO / 你好",
+  "heroYear": "PORTFOLIO / 2026",
+  "ctaText": "与我合作",
+  "tagline": "以平面视觉为原点，用 AIGC 放大创意——让每一帧画面都有生命力",
+  "heroTags": [
+    "AIGC 美术",
+    "品牌设计",
+    "海报版式",
+    "插画图形",
+    "UI / UX",
+    "动态视觉"
+  ],
+  "walker": {
+    "img1": "./assets/works/char-trend-1.webp",
+    "img2": "./assets/works/char-trend-2.webp",
+    "wave": "./assets/works/char-wave.webp",
+    "hello": "你好！"
   },
-
-  /* ---------- 作品分类（可在编辑模式中添加新分类） ---------- */
-  categories: ['全部', '品牌', '海报', '插画', 'UI'],
-
-  /* ---------- 联系方式（页尾模块） ---------- */
-  email: '1326442341@qq.com',
-  phone: '157-1857-8373',     // 电话：15718578373
-  school: '天津理工大学 · 视觉传达设计',
-  location: '中国 · 天津',
-
-  /* ---------- 社交平台（可替换为你的主页链接） ---------- */
-  socials: [
-    { label: '站酷', url: 'https://www.zcool.com.cn' },
-    { label: 'Behance', url: 'https://www.behance.net' },
-    { label: '小红书', url: 'https://www.xiaohongshu.com' },
-    { label: '即刻', url: 'https://web.okjike.com' },
+  "categories": [
+    "全部",
+    "品牌",
+    "海报",
+    "插画",
+    "UI"
   ],
-
-  /* ---------- 个人介绍（个人经历模块） ---------- */
-  intro: [
-    '天津理工大学视觉传达设计本科在读，系统学习品牌设计、海报版式、插画与 UI/UX 等方向；同时深耕 AIGC 美术，拥有三段完整的商业化漫剧与短视频项目实战经验。',
-    '从脚本分镜到美术交付，我习惯以系统化方式推进设计：既用 Photoshop、Illustrator 打磨每一个视觉细节，也借助 ComfyUI、Kling 等工具搭建稳定产出管线，让创意高效落地为成片与画面。',
+  "email": "1326442341@qq.com",
+  "phone": "157-1857-8373",
+  "school": "天津理工大学 · 视觉传达设计",
+  "location": "中国 · 天津",
+  "socials": [
+    {
+      "label": "站酷",
+      "url": "https://www.zcool.com.cn"
+    },
+    {
+      "label": "Behance",
+      "url": "https://www.behance.net"
+    },
+    {
+      "label": "小红书",
+      "url": "https://www.xiaohongshu.com"
+    },
+    {
+      "label": "即刻",
+      "url": "https://web.okjike.com"
+    }
   ],
-  signature: '—— 用画面讲好故事，让视觉自带生命力',
-
-  /* ---------- 项目数据（数字统计，源自简历） ---------- */
-  stats: [
-    { key: 'internships', value: 3, suffix: '段', label: '行业实习经历' },
-    { key: 'journey', value: 3, suffix: '年', label: '视觉传达学习' },
-    { key: 'courses', value: 9, suffix: '门', label: '核心专业课程' },
-    { key: 'directions', value: 5, suffix: '类', label: '作品方向覆盖' },
+  "intro": [
+    "天津理工大学视觉传达设计本科在读，系统学习品牌设计、海报版式、插画与 UI/UX 等方向；同时深耕 AIGC 美术，拥有三段完整的商业化漫剧与短视频项目实战经验。",
+    "从脚本分镜到美术交付，我习惯以系统化方式推进设计：既用 Photoshop、Illustrator 打磨每一个视觉细节，也借助 ComfyUI、Kling 等工具搭建稳定产出管线，让创意高效落地为成片与画面。"
   ],
-
-  /* ---------- 统计详情（点击统计卡片可展开查看，编辑模式可改） ----------
-   * internships : 行业实习经历（3 段）
-   * journey     : 视觉传达学习（3 年）
-   * courses     : 核心专业课程（9 门）
-   * directions  : 作品方向（5 类，image 可引用 works 下任意作品图）
-   */
-  detail: {
-    internships: [
+  "signature": "—— 用画面讲好故事，让视觉自带生命力",
+  "stats": [
+    {
+      "key": "internships",
+      "value": 3,
+      "suffix": "段",
+      "label": "行业实习经历"
+    },
+    {
+      "key": "journey",
+      "value": 3,
+      "suffix": "年",
+      "label": "视觉传达学习"
+    },
+    {
+      "key": "courses",
+      "value": 9,
+      "suffix": "门",
+      "label": "核心专业课程"
+    },
+    {
+      "key": "directions",
+      "value": 5,
+      "suffix": "类",
+      "label": "作品方向覆盖"
+    }
+  ],
+  "detail": {
+    "internships": [
       {
-        time: '2025.09 — 至今',
-        org: 'AIGC 漫剧项目组',
-        role: 'AIGC 美术设计（实习）',
-        desc: '负责漫剧分镜视觉化与美术交付：用 ComfyUI 搭建角色一致性管线，Kling / 即梦生成动态镜头，从脚本分镜到成片全流程跟进，保障画面质量与上线节奏。',
+        "time": "2025.09 — 至今",
+        "org": "AIGC 漫剧项目组",
+        "role": "AIGC 美术设计（实习）",
+        "desc": "负责漫剧分镜视觉化与美术交付：用 ComfyUI 搭建角色一致性管线，Kling / 即梦生成动态镜头，从脚本分镜到成片全流程跟进，保障画面质量与上线节奏。"
       },
       {
-        time: '2025.03 — 2025.08',
-        org: '短视频视觉团队',
-        role: '视觉设计师（实习）',
-        desc: '负责信息流短视频的封面、花字、转场与视觉包装，建立素材规范；结合 AIGC 产出高点击率创意视觉，支撑多条高播放量内容。',
+        "time": "2025.03 — 2025.08",
+        "org": "短视频视觉团队",
+        "role": "视觉设计师（实习）",
+        "desc": "负责信息流短视频的封面、花字、转场与视觉包装，建立素材规范；结合 AIGC 产出高点击率创意视觉，支撑多条高播放量内容。"
       },
       {
-        time: '2024.06 — 2024.09',
-        org: '品牌设计工作室',
-        role: '平面设计师（实习）',
-        desc: '参与品牌 VI、海报与电商视觉设计，从市场调研、草图提案到完稿交付全流程跟进，独立完成多套品牌物料并落地使用。',
-      },
+        "time": "2024.06 — 2024.09",
+        "org": "品牌设计工作室",
+        "role": "平面设计师（实习）",
+        "desc": "参与品牌 VI、海报与电商视觉设计，从市场调研、草图提案到完稿交付全流程跟进，独立完成多套品牌物料并落地使用。"
+      }
     ],
-    journey: [
+    "journey": [
       {
-        year: '第一年',
-        en: 'YEAR 01',
-        stage: '设计基础筑基',
-        desc: '系统学习平面构成、色彩构成、字体设计等基础课程，建立审美判断与执行基本功，完成大量构成与字体训练。',
+        "year": "第一年",
+        "en": "YEAR 01",
+        "stage": "设计基础筑基",
+        "desc": "系统学习平面构成、色彩构成、字体设计等基础课程，建立审美判断与执行基本功，完成大量构成与字体训练。"
       },
       {
-        year: '第二年',
-        en: 'YEAR 02',
-        stage: '专业方向深耕',
-        desc: '聚焦品牌设计、海报版式、插画与 UI/UX 方向，产出一批完整项目并沉淀为作品集雏形。',
+        "year": "第二年",
+        "en": "YEAR 02",
+        "stage": "专业方向深耕",
+        "desc": "聚焦品牌设计、海报版式、插画与 UI/UX 方向，产出一批完整项目并沉淀为作品集雏形。"
       },
       {
-        year: '第三年',
-        en: 'YEAR 03',
-        stage: '商业项目实战',
-        desc: '进入 AIGC 美术与短视频视觉领域，参与商业化漫剧与短视频项目，打通「脚本-分镜-美术-成片」全流程。',
+        "year": "第三年",
+        "en": "YEAR 03",
+        "stage": "商业项目实战",
+        "desc": "进入 AIGC 美术与短视频视觉领域，参与商业化漫剧与短视频项目，打通「脚本-分镜-美术-成片」全流程。"
+      }
+    ],
+    "courses": [
+      "平面构成",
+      "色彩构成",
+      "字体设计",
+      "版式设计",
+      "标志设计",
+      "海报设计",
+      "插画设计",
+      "UI / UX 设计",
+      "品牌形象设计"
+    ],
+    "directions": [
+      {
+        "name": "品牌设计",
+        "en": "BRAND DESIGN",
+        "desc": "标志 · VI · 包装系统",
+        "image": "./assets/works/work-mooli.webp"
       },
-    ],
-    courses: [
-      '平面构成',
-      '色彩构成',
-      '字体设计',
-      '版式设计',
-      '标志设计',
-      '海报设计',
-      '插画设计',
-      'UI / UX 设计',
-      '品牌形象设计',
-    ],
-    directions: [
-      { name: '品牌设计', en: 'BRAND DESIGN', desc: '标志 · VI · 包装系统', image: './assets/works/work-mooli.webp' },
-      { name: '海报设计', en: 'POSTER DESIGN', desc: '活动 · 展览 · 主题海报', image: './assets/works/work-timescent.webp' },
-      { name: '插画设计', en: 'ILLUSTRATION', desc: '主题插画 · 潮流涂鸦', image: './assets/works/work-reading.webp' },
-      { name: 'UI / UX 设计', en: 'UI / UX DESIGN', desc: 'App 全案 · IP 系统', image: './assets/works/work-petapp.webp' },
-      { name: 'AIGC 视觉', en: 'AIGC VISUAL', desc: '漫剧 · 动态 · 内容美术', image: './assets/works/work-aurora.webp' },
-    ],
+      {
+        "name": "海报设计",
+        "en": "POSTER DESIGN",
+        "desc": "活动 · 展览 · 主题海报",
+        "image": "./assets/works/work-timescent.webp"
+      },
+      {
+        "name": "插画设计",
+        "en": "ILLUSTRATION",
+        "desc": "主题插画 · 潮流涂鸦",
+        "image": "./assets/works/work-reading.webp"
+      },
+      {
+        "name": "UI / UX 设计",
+        "en": "UI / UX DESIGN",
+        "desc": "App 全案 · IP 系统",
+        "image": "./assets/works/work-petapp.webp"
+      },
+      {
+        "name": "AIGC 视觉",
+        "en": "AIGC VISUAL",
+        "desc": "漫剧 · 动态 · 内容美术",
+        "image": "./assets/works/work-aurora.webp"
+      }
+    ]
   },
-
-  /* ---------- 个人优势：能力模型（雷达图 + 进度条） ---------- */
-  skills: [
-    { name: 'AIGC 美术', value: 92 },
-    { name: '品牌视觉', value: 90 },
-    { name: '海报版式', value: 88 },
-    { name: '插画图形', value: 85 },
-    { name: '动态视觉', value: 85 },
-    { name: 'UI/UX', value: 82 },
+  "skills": [
+    {
+      "name": "AIGC 美术",
+      "value": 92
+    },
+    {
+      "name": "品牌视觉",
+      "value": 90
+    },
+    {
+      "name": "海报版式",
+      "value": 88
+    },
+    {
+      "name": "插画图形",
+      "value": 85
+    },
+    {
+      "name": "动态视觉",
+      "value": 85
+    },
+    {
+      "name": "UI/UX",
+      "value": 82
+    }
   ],
-
-  /* ---------- 常用工具 ---------- */
-  tools: ['Photoshop', 'Illustrator', 'Premiere Pro', 'Figma', 'ComfyUI', 'Kling', 'Vidu', '即梦'],
-
-  /* ---------- 作品集（项目展示模块，全部 28 幅，横屏滚动） ----------
-   * aspect : 卡片图片比例（宽/高）
-   * note   : 设计说明（200 字以内，展示在图片下方）
-   * 修改作品：替换 public/assets/works/ 对应图片，或新增图片后同步修改这里的
-   * 标题 / 分类 / 年份 / 一句话简介 / 设计说明 / 图片路径
-   */
-  works: [
-    {
-      id: 'mooli',
-      title: 'mooli 品牌视觉识别手册',
-      category: '品牌',
-      year: '2026',
-      desc: '为「Design for Connection」的友好生活品牌构建完整 VI。',
-      note: '围绕「用设计传递友好，让世界更有温度」的品牌理念，为 mooli 构建了从标志、标准色、字体、辅助图形到吉祥物、包装与数字界面的完整视觉体系。标志采用圆润友好的字形与连接式负空间设计，色彩温暖明快，17 大板块规范确保品牌在多场景下保持一致、可延展的视觉形象。',
-      image: './assets/works/work-mooli.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'timescent',
-      title: '「时光の香」国风香水海报',
-      category: '海报',
-      year: '2025',
-      desc: '水墨山水与罗盘元素交织的东方香调叙事。',
-      note: '以「天圆地方」为灵感，将水墨山水、罗盘与香料图形融入海报，瓶身造型取自方与圆的对话。画面以留白与淡墨营造东方意境，香调信息以传统竖排文字呈现，整体兼具商业信息传达与国风审美气质。',
-      image: './assets/works/work-timescent.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'petapp',
-      title: '「汪星守护」宠物健康 App 全案',
-      category: 'UI',
-      year: '2025',
-      desc: '宠物健康管理 App：柯基 IP 与暖橙系产品体验。',
-      note: '面向宠物家庭的健康管理产品。以柯基 IP 拉近情感距离，暖橙色系传递温暖关怀；完整设计了启动页、图标、组件规范与核心功能页，从记录、提醒到社区互动，构建可落地的全链路产品体验。',
-      image: './assets/works/work-petapp.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'inkrhyme',
-      title: '「墨韵新聲」艺术展海报',
-      category: '海报',
-      year: '2024',
-      desc: '新中式水墨展视觉：墨色凤凰与金箔交融。',
-      note: '为当代水墨艺术展设计的视觉主视觉。墨色凤凰与金箔元素交融，象征传统笔墨在现代语境中的新生；「墨韵新聲」与英文副标对仗排布，展出信息清晰分层，兼顾文化底蕴与展览传播功能。',
-      image: './assets/works/work-inkrhyme.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'lumo',
-      title: 'LUMO 品牌视觉识别手册',
-      category: '品牌',
-      year: '2026',
-      desc: '蓝黄主色与插画系统的年轻品牌 VI。',
-      note: '为年轻生活品牌 LUMO 打造「点亮每一刻」的视觉系统：蓝黄主色代表理性与活力，标志简洁锐利，插画系统统一品牌叙事，覆盖办公、包装、数字等多场景应用规范，帮助品牌快速建立识别度。',
-      image: './assets/works/work-lumo.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'reading',
-      title: '「阅读让世界更大」主题插画',
-      category: '插画',
-      year: '2025',
-      desc: '蓝鲸驮城堡遨游云海的奇幻阅读场景。',
-      note: '以「一本书·一场新的远方」为叙事核心，描绘蓝鲸驮着城堡遨游云海的奇幻场景，红帽女孩坐在书堆上阅读，罗盘、地图与飞鸟隐喻探索与想象。青绿色调梦幻清新，将阅读的辽阔感视觉化。',
-      image: './assets/works/work-reading.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'goodtrip',
-      title: 'GOOD TRIP 旅行涂鸦插画',
-      category: '插画',
-      year: '2025',
-      desc: '波普涂鸦风格的自由旅行态度。',
-      note: '波普涂鸦风格记录「说走就走」的旅行态度。旅行者戴耳机墨镜、手持相机，哈士奇与房车、雪山构成假日图景；路标「CITY/MOUNTAIN/SEA/FREEDOM」与勾选清单强化自由探索的情绪。',
-      image: './assets/works/work-goodtrip.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'aurora',
-      title: 'AURORA HARVEST 品牌 VI',
-      category: '品牌',
-      year: '2025',
-      desc: '可持续农业品牌的全套视觉识别。',
-      note: '为可持续有机农业品牌建立完整视觉识别：融合花卉、叶片与太阳的品牌标志传达自然生机，浅米色系与衬线字体现高端有机质感，从包装、摄影、网站到门店环境形成统一规范。',
-      image: './assets/works/work-aurora.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'senbreathe',
-      title: '「森呼吸」情绪治愈 App 全案',
-      category: 'UI',
-      year: '2025',
-      desc: '情绪记录 × 植物养成的治愈系产品。',
-      note: '情绪记录与植物养成结合的自愈系产品。用户通过记录情绪、照料植物获得反馈与陪伴；从 IP 形象、插画、图标到交互流程、动效与周边，全程暖橙绿配色，把「被治愈」做成完整体验。',
-      image: './assets/works/work-senbreathe.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'creativelife',
-      title: 'CREATIVE LIFE 街头涂鸦插画',
-      category: '插画',
-      year: '2025',
-      desc: '高饱和撞色记录创意生活的灵感瞬间。',
-      note: '高饱和撞色与张扬笔触描绘创意青年的日常：红帽少年与黑猫被书籍、相机与灵感便签环绕，「GOOD IDEAS MAKE BETTER DAYS」等标语强化积极追梦的街头文化气质。',
-      image: './assets/works/work-creativelife.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'herbcity',
-      title: '「草药治愈城市」展览海报',
-      category: '海报',
-      year: '2024',
-      desc: '植物建筑学 × 健康居住的主题展视觉。',
-      note: '为「植物建筑学·健康居住」主题展设计，将草药与城市建筑轮廓融合，绿植穿行其间；「由内而外的治愈，让城市深呼吸」点题，浅米底与绿色系传递自然、健康、宜居的展览主张。',
-      image: './assets/works/work-herbcity.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'pinecone',
-      title: '「小松果」浣熊 IP 全案',
-      category: 'UI',
-      year: '2025',
-      desc: '从三视图到周边与 App 界面的完整 IP 系统。',
-      note: '以「小松果」浣熊为核心打造完整 IP 系统：从基础三视图、色彩字体规范，到服装造型、故事版、低保真原型、组件库、周边与 App 界面，全面示范了 IP 从角色设定到商业落地的设计路径。',
-      image: './assets/works/work-pinecone.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'foodtrip',
-      title: '「味旅记」美食 App 全案',
-      category: 'UI',
-      year: '2025',
-      desc: '熊猫 IP 与六大功能模块的美食探索体验。',
-      note: '面向美食探索场景的 App 设计：熊猫 IP 活泼亲切，暖橙色调激发食欲；以六大功能模块串联发现、记录与分享的美食之旅，并配套插画延展与设计规范，保证产品一致性与趣味性。',
-      image: './assets/works/work-foodtrip.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'detox',
-      title: '「放下手机 找回生活」海报',
-      category: '海报',
-      year: '2025',
-      desc: '7 天数字排毒挑战：放下手机，回归生活。',
-      note: '以「7 天数字排毒挑战」为主题，用轻松手绘风呈现放下手机、回归真实生活的理念。画面把手机拟作「被埋葬」的对象，右侧列出戒断收获与 20-20-20 法则，左下规划 7 天每日任务，劝导性强、信息完整。',
-      image: './assets/works/work-detox.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'brain',
-      title: '「让大脑充满电」主题海报',
-      category: '海报',
-      year: '2025',
-      desc: '粉色大脑卡通：专注、高效、持续进步。',
-      note: '学习励志主题插画海报，粉色大脑戴耳机、捧书本，站在书堆上充电，象征持续输入与成长；「记忆提升/思维清晰/效率翻倍」等关键词配合打卡清单，把抽象的学习方法转化为可爱可视的日常行动。',
-      image: './assets/works/work-brain.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'galaxy',
-      title: 'SWEET GALAXY BAKERY 品牌 VI',
-      category: '品牌',
-      year: '2025',
-      desc: '粉紫马卡龙色系与熊厨师 IP 的烘焙品牌。',
-      note: '甜蜜星系的烘焙品牌视觉：粉紫马卡龙色系营造梦幻氛围，熊厨师 IP 亲和可爱，完整覆盖标志、包装、门店物料与社交媒体模板，让甜品品牌自带童话感与传播力。',
-      image: './assets/works/work-galaxy.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'sweethug',
-      title: 'SWEET HUG BAKERY LAB 品牌 VI',
-      category: '品牌',
-      year: '2025',
-      desc: '马卡龙色与面包 IP 的温暖治愈视觉。',
-      note: '烘焙实验室的品牌升级：马卡龙色与面包 IP 构成温暖治愈的视觉语言，标志、辅助图形与应用系统统一又富趣味，帮助品牌在竞争激烈的烘焙赛道建立温柔、专业的差异化形象。',
-      image: './assets/works/work-sweethug.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'skatechill',
-      title: 'SKATE & CHILL 滑板涂鸦插画',
-      category: '插画',
-      year: '2025',
-      desc: '小狗滑手与夕阳滑板场的轻松潮流插画。',
-      note: '潮流滑板主题涂鸦：拟人小狗戴棒球帽与耳机，在夕阳滑板场举着冰饮「chill」一下；黄粉青黑高饱和配色与「LIFE IS BETTER ON A BOARD」标语，传递轻松随性的街头生活方式。',
-      image: './assets/works/work-skatechill.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'reading2',
-      title: '「在书里遇见更大的世界」插画',
-      category: '插画',
-      year: '2025',
-      desc: '贝雷帽女孩与云海城堡的阅读想象。',
-      note: '贝雷帽女孩坐在摊开的巨书上，猫咪相伴，背景是云海中的城堡与游鲸；台灯、书堆与绿植营造阅读的仪式感，表达「阅读让想象不设限」，画面清新治愈、富有故事性。',
-      image: './assets/works/work-reading2.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'sweetdream',
-      title: 'SWEET DREAM CAFE 品牌 VI',
-      category: '品牌',
-      year: '2025',
-      desc: '黑粉调与五大系统的梦幻咖啡品牌。',
-      note: '梦幻咖啡店的品牌视觉系统：黑粉调与精致线条塑造夜间咖啡美学，五大系统覆盖标志、色彩、应用与空间物料，「DREAM SWEETLY, LIVE GENTLY」的品牌文案贯穿始终。',
-      image: './assets/works/work-sweetdream.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'nioma',
-      title: '「别看了，你才是牛马」创意海报',
-      category: '海报',
-      year: '2024',
-      desc: '牛马戴眼镜的职场吐槽与假期宣言。',
-      note: '以牛马戴眼镜的荒诞形象调侃职场生态，蓝绿色手绘与办公元素交织，镜片折射加班日常；「暂停常规，开启奇想模式」的假期主张配合 05.01-05.05 活动信息，幽默中带传播力。',
-      image: './assets/works/work-nioma.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'logo-minimal',
-      title: '现代简约 LOGO 合集',
-      category: '品牌',
-      year: '2025',
-      desc: '12 枚现代简约风格品牌 LOGO 设计。',
-      note: '一组成体系 logo：12 枚现代简约风格标志，以几何、留白与克制的线条塑造 VALERIAN、ORION、SÉLENE 等品牌形象，覆盖科技、时尚、家居等多行业，体现标志设计的系统化思路。',
-      image: './assets/works/work-logo-minimal.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'logo-serif',
-      title: '轻奢衬线 LOGO 合集',
-      category: '品牌',
-      year: '2025',
-      desc: '15 枚轻奢衬线品牌 LOGO 设计。',
-      note: '15 枚轻奢品牌标志，以衬线字体的优雅字形为核心，通过字距、衬线与金银色质感塑造 ALVORA、SOLÉA、BELVÉR 等高端品牌调性，适合美妆、香氛与精品零售场景。',
-      image: './assets/works/work-logo-serif.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'coffeeanywhere',
-      title: 'GOOD COFFEE ANYWHERE 海报',
-      category: '海报',
-      year: '2025',
-      desc: '便携咖啡杯的潮流插画海报。',
-      note: '便携咖啡杯拟人化设计：杯子穿着红鞋奔跑，背景蓝调做旧纹理配合城市天际线，「WORK/TRAVEL/LIFE」路标点明随时随地场景；保温保冷、防漏便携等卖点图形化呈现，活力十足。',
-      image: './assets/works/work-coffeeanywhere.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'coffeecreative',
-      title: 'COFFEE & CREATIVE DAY 海报',
-      category: '海报',
-      year: '2025',
-      desc: '复古波普风咖啡创意日活动海报。',
-      note: '复古波普风活动海报：戴墨镜的咖啡杯踩着滑板手持画笔，米黄底搭配粉黄蓝黑撞色，创意元素环绕；时间、地点、票价与活动内容信息完整，整体传达「唤醒创意」的派对氛围。',
-      image: './assets/works/work-coffeecreative.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'skatefest',
-      title: 'URBAN SKATE FEST 滑板节海报',
-      category: '插画',
-      year: '2025',
-      desc: '滑手与黑猫的都市滑板节主视觉。',
-      note: '都市滑板节主视觉：滑手与黑猫、涂鸦滑板构成街头叙事，皇冠元素贯穿服装、饮品与板面，蓝粉黄高饱和配色热烈自由；JUL 26-27、RIVERFRONT PARK 等活动信息清晰标注。',
-      image: './assets/works/work-skatefest.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'unseen',
-      title: 'EXPLORE THE UNSEEN 招募海报',
-      category: '海报',
-      year: '2024',
-      desc: '复古科幻风的影视招募海报。',
-      note: '复古科幻风影视招募海报：礼帽男子行走于漩涡光带，飞碟与星座符号点缀，米白、深红、黑配色叠加做旧质感；「探索感知的边界」的主题文案与 Casting Call 信息醒目，神秘而有张力。',
-      image: './assets/works/work-unseen.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'timescent-b',
-      title: '「时光の香」香水海报 · 版本 B',
-      category: '海报',
-      year: '2025',
-      desc: '同一主题下的另一版本排版尝试。',
-      note: '「时光の香」系列的另一版本：延续水墨山水与罗盘元素，瓶身香材图案更简洁，前后调信息以竖排中西文对照呈现，强化限量与创立年份的收藏属性，是同一主题下的不同排版尝试。',
-      image: './assets/works/work-timescent-b.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'app-chongji',
-      title: '「宠迹」宠物健康管理 App 全案',
-      category: 'UI',
-      year: '2025',
-      desc: '宠物健康管家：柯基 IP 与暖橙系完整产品体验。',
-      note: '「宠迹」是一款专为宠物家长打造的全方位健康管理应用。设计以「懂它的每一天，陪它的一辈子」为核心主张，从情感陪伴出发构建整套产品视觉。品牌 IP 采用亲和力十足的柯基形象，贯穿引导页、功能页与社区互动，降低产品的使用门槛，也让每一次打开都更有温度。界面以暖橙为主色、米白与深灰为辅，营造温暖、可信赖的视觉氛围；健康记录、智能提醒、饮食建议、成长档案与社区交流五大模块分层清晰，图标与插画统一圆润语言，确保功能识别与情感表达并重。在信息架构上，用卡片化布局与留白控制信息密度，让健康数据一目了然；同时规范了色彩、字体（思源黑体/DIN Alternate）与组件体系，保证多端体验的一致性。整体设计兼顾科学养宠的专业感与陪伴成长的亲切感，是一套从品牌到界面完整落地的产品体验方案。',
-      image: './assets/works/work-app-chongji.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'app-xinglv',
-      title: '「星旅计划」旅行规划助手 App',
-      category: 'UI',
-      year: '2025',
-      desc: '智能行程规划 + 预算管理的旅行助手。',
-      note: '「星旅计划」是一款集智能行程规划、预算管理、灵感发现与旅途记录于一体的旅行助手应用。设计以深蓝与暖黄为主色，象征星空探索与温暖旅程，配合星球、星空与旅行人物插画，构建充满探索欲的产品气质。从引导页的「探索世界」叙事，到核心的行程规划、预算管理与旅途记录页面，完整覆盖用户出行前中后全流程；行程卡片、预算分布图与记录时间轴均以清晰的层级和统一的图形语言呈现，降低操作成本。灵感发现页以目的地故事激发出行冲动，分享体系鼓励记录与传播，形成体验闭环。字体与图标系统规范统一，确保信息在 iOS 与 Android 双端的一致呈现。整体设计将理性规划与感性探索融合，让每一次出发都更简单、更有趣、更难忘。',
-      image: './assets/works/work-app-xinglv.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'app-xinggui',
-      title: '「星轨日记」情绪记录 App',
-      category: 'UI',
-      year: '2025',
-      desc: '情绪宇宙概念：让记录成为习惯、让情绪有归宿。',
-      note: '「星轨日记」是一款结合情绪记录、日记、习惯养成与星空探索的治愈系应用。设计以「情绪宇宙」为核心概念：用户记录每日心情后，系统将其转化为一颗星球的成长轨迹，随着记录累积星球不断成长、解锁新的星域，让坚持变得可视、可感、可期待。视觉上以黑、橙、白为主色，配合星球、轨道与星尘图形，营造安静而有希望的宇宙氛围；心情选择、日历视图、日记列表与数据统计均采用圆润卡片与柔和过渡，弱化工具感，强化陪伴感。功能上整合情绪星球、习惯养成、行星音乐与隐私安全等模块，在觉察、表达、复盘之间建立完整链路。设计关键词「治愈、陪伴、成长、探索、记录」贯穿始终，整体以克制的配色与细腻的动效传递温度，帮助用户更好地认识自己、管理情绪。',
-      image: './assets/works/work-app-xinggui.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'vi-galaxio',
-      title: 'GALAXIO 太空探索品牌 VI',
-      category: '品牌',
-      year: '2025',
-      desc: '探索·连接·守护：深空蓝科技品牌全案视觉。',
-      note: 'GALAXIO 是一个以太空探索为定位的科技探索品牌，主张「探索·连接·守护」。整套 VI 以深空蓝为主色、活力红为强调色，配合白色构建宇宙级视觉秩序：标志以简洁的火箭与星球图形组合传达探索基因，字标选用 SPACE GROTESK 与思源黑体保证科技感与中文可读性；品牌吉祥物为不同姿态的卡通宇航员，贯穿应用示例、海报与界面，建立强识别符号。手册完整覆盖标志规范、色值、字体、图形元素、图标系统、移动端与网页端界面、品牌场景应用与延展图案，形成从基础系统到应用系统的闭环；海报以「探索、连接、守护」三主题延展叙事，周边产品与界面统一视觉语言。整体设计在科技感与亲和力之间取得平衡，为品牌进入市场提供了完整、可落地的视觉支撑。',
-      image: './assets/works/work-vi-galaxio.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'vi-ecohero',
-      title: 'ECOHERO 环保品牌 VI 手册',
-      category: '品牌',
-      year: '2025',
-      desc: '绿色生活方式品牌：小行动带来大改变。',
-      note: 'ECOHERO 是一个倡导环保行动的生活方式品牌，主张「一个小行动，带来大改变」。整套 VI 以自然绿为主色，白色、黑色与橙色为辅助色，传递清新、积极、可持续的品牌气质。手册从品牌介绍、使命与定位出发，系统规范了 LOGO 系统及其变体、最小使用尺寸与安全空间，确保标志在不同载体与尺寸下的规范应用；吉祥物为绿色卡通环保形象，以亲切的造型拉近品牌与公众的距离，并延伸至移动端界面等数字场景。色彩、字体与图形系统的规范保证品牌在传播物料中的一致性，应用示例覆盖包装、周边与数字体验等触点。整体设计以简洁、轻快的视觉语言将环保理念转化为可感知的品牌体验，鼓励每个人为地球采取行动。',
-      image: './assets/works/work-vi-ecohero.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'vi-novapulse',
-      title: 'NOVA PULSE 科技品牌 VI 手册',
-      category: '品牌',
-      year: '2025',
-      desc: '宇航员 IP PULSY：未来科技的想象与温度。',
-      note: 'NOVA PULSE 是一个探索未来的创新科技品牌，致力于用智能、连接与体验让世界更有趣、更高效、更美好。品牌核心视觉为卡通宇航员 IP「PULSY」，以灵动造型与亲和性格陪伴用户探索无限可能。VI 手册以深空蓝为底，电光青、脉冲粉、星耀黄等辅助色构建未来感色彩系统；标志、标准字（INTER/DIN NEXT）、图形与图标系统统一规范，确保品牌在科技语境下的识别效率。应用系统覆盖 APP 界面、海报、办公用品、环境导视与周边产品等多元场景，从启动页「HELLO, FUTURE」到海报「EXPLORE THE FUTURE」，品牌口号「LET\'S PULSE」贯穿始终，强化品牌记忆点。整体设计在科技严谨与品牌温度之间形成张力，为品牌讲述了一个有想象力、可延展的视觉故事。',
-      image: './assets/works/work-vi-novapulse.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'vi-orbix',
-      title: 'ORBIX 活泼科技品牌 VI 手册',
-      category: '品牌',
-      year: '2025',
-      desc: '圆润球状视觉语言 + 明快撞色的年轻品牌。',
-      note: 'ORBIX 是一个以圆润球状视觉元素为核心的活泼科技品牌。整套视觉识别系统手册采用蓝、红、黄、青的明快配色，配合圆润的几何造型，传递年轻、灵动、友好的品牌气质。基础系统涵盖品牌标志及反白稿、标准色彩、字体规范（ORBITRON/思源黑体）、图形元素与辅助图形，建立清晰的视觉语言；应用系统完整展示名片、信封与信纸、手机界面、图标、社交媒体、空间与周边应用等落地场景，验证视觉系统在不同触点上的可延展性。标志以「ORB!X」的感叹号细节强化品牌记忆，辅助图形在各类物料中保持统一的节奏感。整体设计用轻松的色彩与圆润的造型，为品牌构建了一套既活泼又规范、易于记忆与传播的视觉识别系统。',
-      image: './assets/works/work-vi-orbix.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'vi-linkora',
-      title: 'Linkora 连接灵感品牌 VI 手册',
-      category: '品牌',
-      year: '2025',
-      desc: 'PLAY · CONNECT · INSPIRE：理性与活力的平衡。',
-      note: 'Linkora 是一个以「连接·启发·创造」为理念的品牌，主张通过连接激发灵感。VI 手册以深海军蓝为主色、荧光绿为强调色，辅以亮蓝与淡紫，构建理性而富有活力的视觉系统。标志图形由符号与字母组成，象征连接、互动与灵感的汇聚；字体规范采用思源黑体系列，保证中文环境下的清晰传达。基础系统规范了标志组合与安全空间、色彩、字体、辅助图形与图标系统，应用系统覆盖名片、信封信纸、PPT 模板、包装、服饰徽章、数字应用、社交媒体与宣传物料，贯穿品牌与受众沟通的每一个触点。辅助图形以抽象的曲线、几何色块与点状元素灵活应用于各类物料，强化视觉个性。整体设计系统清晰、延展性强，确保品牌形象的一致性与辨识度。',
-      image: './assets/works/work-vi-linkora.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'vi-lynk',
-      title: 'Lynk 连接创造品牌 VI 手册',
-      category: '品牌',
-      year: '2025',
-      desc: '外星机器人 IP + 深蓝亮绿的全触点规范。',
-      note: 'Lynk 是一个以「CONNECT·CREATE·CARE」为口号的连接创造品牌，视觉识别系统手册以深蓝与亮绿为主色，配合卡通外星机器人 IP 形象，构建兼具科技感与亲和力的品牌形象。基础系统完整规范了品牌标志、标准制图、标志组合与禁用规范，确保标志应用的严肃性与一致性；标准色与辅助色、字体（思源黑体/Poppins）、辅助图形与图标系统形成统一的视觉语言，吉祥物 IP 以活泼的造型承担品牌情感表达。应用系统覆盖名片、信封信纸、工牌、纽扣、APP 界面与图标、数据图表、社交界面、包装、环境导视与车身设计等多元场景，全面验证视觉系统在不同媒介上的落地效果。整体设计在规范与个性之间取得平衡，为品牌建立了完整、可执行的视觉识别体系。',
-      image: './assets/works/work-vi-lynk.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'gua-dragon',
-      title: '「龙韵少年」国风潮流插画',
-      category: '插画',
-      year: '2025',
-      desc: '红青撞色 × 少年与龙：传统美学的年轻表达。',
-      note: '「龙韵少年」是一幅融合传统国风与当代潮流的插画作品。画面以红青撞色的斜纹背景与明黄边框奠定强烈的视觉张力，少年身着融合传统纹样与现代服饰的穿搭，倚靠木质台面、手持茶杯，神情悠然，传递「新旧交融」的生活态度；身后盘踞的青绿巨龙以红金点缀，威严而不失灵动，与少年的松弛形成有趣对比。细节上，茶壶、折扇、书卷、山水画卷、灯笼与海浪纹样共同构建东方意境，而复古背包与潮流单品则注入现代气息，背景的云海古建与仙鹤进一步拓展画面的叙事纵深。作品尝试用插画语言探讨「传统如何在当代重新被看见」——它不是简单的元素堆砌，而是以构图、配色与造型的统一，让东方美学以更年轻、更潮流的方式被接受。',
-      image: './assets/works/work-gua-dragon.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'gua-luck',
-      title: '「好运少女」国风潮流插画',
-      category: '插画',
-      year: '2025',
-      desc: '红蓝撞色 × 福运主题：传统祝福的潮流演绎。',
-      note: '「好运少女」以红、蓝、米黄为主色调，描绘一位身着红纹古风外袍、搭配休闲白裤与潮流运动鞋的少女，手托脸颊、姿态闲适，身旁黑白猫咪佩戴福字项圈，画面充满「被好运包围」的松弛感。身后青蓝带金纹的巨龙、红日、祥云与盛开的红牡丹构成东方吉祥意象，红灯笼与「福」字点缀强化节庆氛围；同时画面融入书籍、笔记本电脑、咖啡杯、纸笔等现代物件，以及「新的每一天」「好运常在」「计划·行动·成长」「更好的自己·从现在开始」等励志文案，将传统祝福与现代生活态度并置。作品在构图与配色上追求热闹而不失秩序，用潮流插画的表达方式重新演绎国风吉祥主题，传递出自我成长、积极向上的生活信念。',
-      image: './assets/works/work-gua-luck.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'poster-cf-vintage',
-      title: '「Good Coffee Better Days」复古咖啡海报',
-      category: '海报',
-      year: '2025',
-      desc: '日式复古潮流：一杯咖啡与美好生活。',
-      note: '「Good Coffee Better Days」是一张复古潮流风格的咖啡主题海报。画面以橙、红、青为主色，暖黄色底配合放射状线条与日式富士山、红日元素，营造浓郁的上世纪复古海报质感。主体人物戴墨镜、红帽、身着红色外套，坐在咖啡木箱上悠闲举杯，身旁戴红镜片眼镜的猫咪与堆满的咖啡豆强化场景的生活气息；后方巨型咖啡杯印有主题标语并升起袅袅热气，成为画面的视觉锚点。左侧咖啡品类列表与右侧「现磨咖啡」等文字信息以复古印刷排布，兼顾商业信息与装饰美感。作品尝试用「咖啡=美好生活」的通俗叙事，通过强对比撞色、粗线条与做旧质感，让复古潮流成为品牌沟通的独特记忆点。',
-      image: './assets/works/work-poster-cf-vintage.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'poster-cf-street',
-      title: '「街头咖啡」潮流插画海报',
-      category: '海报',
-      year: '2025',
-      desc: '街头艺术 × 咖啡文化：松弛有态度的画面。',
-      note: '这是一幅街头潮流风格的咖啡主题插画海报。画面以暖黄为底，橙红与青蓝撞色构成强烈视觉冲击，卷发少年身着橙红棉服、补丁牛仔裤与潮牌运动鞋席地而坐，身旁咖啡杯、麻袋与散落的咖啡豆、咖啡花、咖啡果构建完整的咖啡语境；身后巨型拟人化咖啡杯被一只大手托举，大眼睛与冒热气的杯口赋予角色生命力，与少年形成轻松有趣的互动。背景的咖啡门店街景、红白条纹遮阳篷、落日与放射状线条共同营造街头文化的氛围，粗犷的线条与复古印刷质感让画面充满手作的温度。作品将咖啡文化与街头艺术结合，以夸张的角色造型和丰富的细节层次，传递年轻、松弛、有态度的咖啡消费情绪。',
-      image: './assets/works/work-poster-cf-street.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'poster-cf-yuanqi',
-      title: '「元气咖啡」国潮卡通海报',
-      category: '海报',
-      year: '2025',
-      desc: '一杯好咖啡，开启元气一天。',
-      note: '「一杯好咖啡，开启元气一天」是一张国潮风格的咖啡主题商业插画海报。主角为拟人化咖啡杯卡通形象，头戴棒球帽、墨镜，脚踩滑板，表情活泼张扬，以动感姿态强化「元气」主题；两侧的白色猫咪与戴绿帽小熊卡通形象丰富画面趣味，背景融合城市建筑与咖啡豆、咖啡树、咖啡花等元素，外卖小哥骑电动车配送的画面直观传达「快速配送」的产品卖点。配色以明快的撞色为主，线条圆润、造型讨喜，信息分区清晰：主标题、好心情标语与香醇浓郁、现磨新鲜、快速配送等卖点标签层次分明，底部「现在就来喝一杯」形成行动号召。作品用国潮插画语言，将咖啡消费转化为一种活力四射、充满好心情的生活方式表达。',
-      image: './assets/works/work-poster-cf-yuanqi.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'poster-cf-planet',
-      title: '「咖啡星球」复古科幻海报',
-      category: '海报',
-      year: '2025',
-      desc: '这杯咖啡，为你而来：科幻叙事注入仪式感。',
-      note: '「这杯咖啡，为你而来」是一张复古科幻风格的咖啡商业宣传海报。画面以黑、米白与棕褐为主色，营造老式科幻电影般的怀旧氛围：巨型咖啡杯居于视觉中心，咖啡液如星云般环绕杯身，宇航员、星球与火箭等太空元素点缀其间，暗示咖啡带来的探索与能量；下方咖啡门店与咖啡师形象建立真实的消费场景。海报以左右分栏结构系统传达卖点——精选全球优质咖啡豆、匠心烘焙、新鲜研磨、多种风味，以及随时随地享受咖啡时刻、精品包装、会员专享、安心品质等服务承诺，信息层级清晰、阅读节奏舒适；底部「下单即享专属咖啡时光」与每日打卡计划强化转化引导。作品以科幻叙事为咖啡注入想象力和仪式感，在商业传播中形成鲜明差异。',
-      image: './assets/works/work-poster-cf-planet.webp',
-      aspect: '4 / 5',
-    },
-    {
-      id: 'poster-cf-cartoon',
-      title: '「Good Coffee Better Day」涂鸦咖啡海报',
-      category: '海报',
-      year: '2025',
-      desc: '美式涂鸦卡通：快乐亲切的咖啡时刻。',
-      note: '「Good Coffee Better Day」是一张美式涂鸦风格的咖啡主题卡通海报。画面色彩鲜艳明快，中心为戴着棕色针织帽、护目镜的卡通小男孩，咧嘴大笑、双手捧着咖啡纸杯，情绪感染力强；拟人化咖啡杯、冰沙杯、牛角包、曲奇纸杯蛋糕与散落的咖啡豆围绕四周，背后带有「COFFEE」招牌的咖啡小店与太阳、云朵、绿植元素共同构建热闹的街角场景。海报以涂鸦式排版分布信息：咖啡品类清单、扫码支付提示、周边包装与「PREMIUM COFFEE」「FRESHLY BREWED」「GOOD MOOD」等品质标签错落有致，底部卖点条强化「好咖啡带来好心情」的核心理念。整体用轻松夸张的卡通语言降低商业信息的距离感，让咖啡消费显得快乐、亲切、触手可及。',
-      image: './assets/works/work-poster-cf-cartoon.webp',
-      aspect: '4 / 5',
-    },
+  "tools": [
+    "Photoshop",
+    "Illustrator",
+    "Premiere Pro",
+    "Figma",
+    "ComfyUI",
+    "Kling",
+    "Vidu",
+    "即梦"
   ],
-}
+  "works": [
+    {
+      "id": "mooli",
+      "title": "mooli 品牌视觉识别手册",
+      "category": "品牌",
+      "year": "2026",
+      "desc": "为「Design for Connection」的友好生活品牌构建完整 VI。",
+      "note": "围绕「用设计传递友好，让世界更有温度」的品牌理念，为 mooli 构建了从标志、标准色、字体、辅助图形到吉祥物、包装与数字界面的完整视觉体系。标志采用圆润友好的字形与连接式负空间设计，色彩温暖明快，17 大板块规范确保品牌在多场景下保持一致、可延展的视觉形象。",
+      "image": "./assets/works/work-mooli.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "timescent",
+      "title": "「时光の香」国风香水海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "水墨山水与罗盘元素交织的东方香调叙事。",
+      "note": "以「天圆地方」为灵感，将水墨山水、罗盘与香料图形融入海报，瓶身造型取自方与圆的对话。画面以留白与淡墨营造东方意境，香调信息以传统竖排文字呈现，整体兼具商业信息传达与国风审美气质。",
+      "image": "./assets/works/work-timescent.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "petapp",
+      "title": "「汪星守护」宠物健康 App 全案",
+      "category": "UI",
+      "year": "2025",
+      "desc": "宠物健康管理 App：柯基 IP 与暖橙系产品体验。",
+      "note": "面向宠物家庭的健康管理产品。以柯基 IP 拉近情感距离，暖橙色系传递温暖关怀；完整设计了启动页、图标、组件规范与核心功能页，从记录、提醒到社区互动，构建可落地的全链路产品体验。",
+      "image": "./assets/works/work-petapp.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "inkrhyme",
+      "title": "「墨韵新聲」艺术展海报",
+      "category": "海报",
+      "year": "2024",
+      "desc": "新中式水墨展视觉：墨色凤凰与金箔交融。",
+      "note": "为当代水墨艺术展设计的视觉主视觉。墨色凤凰与金箔元素交融，象征传统笔墨在现代语境中的新生；「墨韵新聲」与英文副标对仗排布，展出信息清晰分层，兼顾文化底蕴与展览传播功能。",
+      "image": "./assets/works/work-inkrhyme.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "lumo",
+      "title": "LUMO 品牌视觉识别手册",
+      "category": "品牌",
+      "year": "2026",
+      "desc": "蓝黄主色与插画系统的年轻品牌 VI。",
+      "note": "为年轻生活品牌 LUMO 打造「点亮每一刻」的视觉系统：蓝黄主色代表理性与活力，标志简洁锐利，插画系统统一品牌叙事，覆盖办公、包装、数字等多场景应用规范，帮助品牌快速建立识别度。",
+      "image": "./assets/works/work-lumo.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "reading",
+      "title": "「阅读让世界更大」主题插画",
+      "category": "插画",
+      "year": "2025",
+      "desc": "蓝鲸驮城堡遨游云海的奇幻阅读场景。",
+      "note": "以「一本书·一场新的远方」为叙事核心，描绘蓝鲸驮着城堡遨游云海的奇幻场景，红帽女孩坐在书堆上阅读，罗盘、地图与飞鸟隐喻探索与想象。青绿色调梦幻清新，将阅读的辽阔感视觉化。",
+      "image": "./assets/works/work-reading.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "goodtrip",
+      "title": "GOOD TRIP 旅行涂鸦插画",
+      "category": "插画",
+      "year": "2025",
+      "desc": "波普涂鸦风格的自由旅行态度。",
+      "note": "波普涂鸦风格记录「说走就走」的旅行态度。旅行者戴耳机墨镜、手持相机，哈士奇与房车、雪山构成假日图景；路标「CITY/MOUNTAIN/SEA/FREEDOM」与勾选清单强化自由探索的情绪。",
+      "image": "./assets/works/work-goodtrip.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "aurora",
+      "title": "AURORA HARVEST 品牌 VI",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "可持续农业品牌的全套视觉识别。",
+      "note": "为可持续有机农业品牌建立完整视觉识别：融合花卉、叶片与太阳的品牌标志传达自然生机，浅米色系与衬线字体现高端有机质感，从包装、摄影、网站到门店环境形成统一规范。",
+      "image": "./assets/works/work-aurora.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "senbreathe",
+      "title": "「森呼吸」情绪治愈 App 全案",
+      "category": "UI",
+      "year": "2025",
+      "desc": "情绪记录 × 植物养成的治愈系产品。",
+      "note": "情绪记录与植物养成结合的自愈系产品。用户通过记录情绪、照料植物获得反馈与陪伴；从 IP 形象、插画、图标到交互流程、动效与周边，全程暖橙绿配色，把「被治愈」做成完整体验。",
+      "image": "./assets/works/work-senbreathe.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "creativelife",
+      "title": "CREATIVE LIFE 街头涂鸦插画",
+      "category": "插画",
+      "year": "2025",
+      "desc": "高饱和撞色记录创意生活的灵感瞬间。",
+      "note": "高饱和撞色与张扬笔触描绘创意青年的日常：红帽少年与黑猫被书籍、相机与灵感便签环绕，「GOOD IDEAS MAKE BETTER DAYS」等标语强化积极追梦的街头文化气质。",
+      "image": "./assets/works/work-creativelife.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "herbcity",
+      "title": "「草药治愈城市」展览海报",
+      "category": "海报",
+      "year": "2024",
+      "desc": "植物建筑学 × 健康居住的主题展视觉。",
+      "note": "为「植物建筑学·健康居住」主题展设计，将草药与城市建筑轮廓融合，绿植穿行其间；「由内而外的治愈，让城市深呼吸」点题，浅米底与绿色系传递自然、健康、宜居的展览主张。",
+      "image": "./assets/works/work-herbcity.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "pinecone",
+      "title": "「小松果」浣熊 IP 全案",
+      "category": "UI",
+      "year": "2025",
+      "desc": "从三视图到周边与 App 界面的完整 IP 系统。",
+      "note": "以「小松果」浣熊为核心打造完整 IP 系统：从基础三视图、色彩字体规范，到服装造型、故事版、低保真原型、组件库、周边与 App 界面，全面示范了 IP 从角色设定到商业落地的设计路径。",
+      "image": "./assets/works/work-pinecone.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "foodtrip",
+      "title": "「味旅记」美食 App 全案",
+      "category": "UI",
+      "year": "2025",
+      "desc": "熊猫 IP 与六大功能模块的美食探索体验。",
+      "note": "面向美食探索场景的 App 设计：熊猫 IP 活泼亲切，暖橙色调激发食欲；以六大功能模块串联发现、记录与分享的美食之旅，并配套插画延展与设计规范，保证产品一致性与趣味性。",
+      "image": "./assets/works/work-foodtrip.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "detox",
+      "title": "「放下手机 找回生活」海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "7 天数字排毒挑战：放下手机，回归生活。",
+      "note": "以「7 天数字排毒挑战」为主题，用轻松手绘风呈现放下手机、回归真实生活的理念。画面把手机拟作「被埋葬」的对象，右侧列出戒断收获与 20-20-20 法则，左下规划 7 天每日任务，劝导性强、信息完整。",
+      "image": "./assets/works/work-detox.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "brain",
+      "title": "「让大脑充满电」主题海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "粉色大脑卡通：专注、高效、持续进步。",
+      "note": "学习励志主题插画海报，粉色大脑戴耳机、捧书本，站在书堆上充电，象征持续输入与成长；「记忆提升/思维清晰/效率翻倍」等关键词配合打卡清单，把抽象的学习方法转化为可爱可视的日常行动。",
+      "image": "./assets/works/work-brain.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "galaxy",
+      "title": "SWEET GALAXY BAKERY 品牌 VI",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "粉紫马卡龙色系与熊厨师 IP 的烘焙品牌。",
+      "note": "甜蜜星系的烘焙品牌视觉：粉紫马卡龙色系营造梦幻氛围，熊厨师 IP 亲和可爱，完整覆盖标志、包装、门店物料与社交媒体模板，让甜品品牌自带童话感与传播力。",
+      "image": "./assets/works/work-galaxy.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "sweethug",
+      "title": "SWEET HUG BAKERY LAB 品牌 VI",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "马卡龙色与面包 IP 的温暖治愈视觉。",
+      "note": "烘焙实验室的品牌升级：马卡龙色与面包 IP 构成温暖治愈的视觉语言，标志、辅助图形与应用系统统一又富趣味，帮助品牌在竞争激烈的烘焙赛道建立温柔、专业的差异化形象。",
+      "image": "./assets/works/work-sweethug.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "skatechill",
+      "title": "SKATE & CHILL 滑板涂鸦插画",
+      "category": "插画",
+      "year": "2025",
+      "desc": "小狗滑手与夕阳滑板场的轻松潮流插画。",
+      "note": "潮流滑板主题涂鸦：拟人小狗戴棒球帽与耳机，在夕阳滑板场举着冰饮「chill」一下；黄粉青黑高饱和配色与「LIFE IS BETTER ON A BOARD」标语，传递轻松随性的街头生活方式。",
+      "image": "./assets/works/work-skatechill.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "reading2",
+      "title": "「在书里遇见更大的世界」插画",
+      "category": "插画",
+      "year": "2025",
+      "desc": "贝雷帽女孩与云海城堡的阅读想象。",
+      "note": "贝雷帽女孩坐在摊开的巨书上，猫咪相伴，背景是云海中的城堡与游鲸；台灯、书堆与绿植营造阅读的仪式感，表达「阅读让想象不设限」，画面清新治愈、富有故事性。",
+      "image": "./assets/works/work-reading2.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "sweetdream",
+      "title": "SWEET DREAM CAFE 品牌 VI",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "黑粉调与五大系统的梦幻咖啡品牌。",
+      "note": "梦幻咖啡店的品牌视觉系统：黑粉调与精致线条塑造夜间咖啡美学，五大系统覆盖标志、色彩、应用与空间物料，「DREAM SWEETLY, LIVE GENTLY」的品牌文案贯穿始终。",
+      "image": "./assets/works/work-sweetdream.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "nioma",
+      "title": "「别看了，你才是牛马」创意海报",
+      "category": "海报",
+      "year": "2024",
+      "desc": "牛马戴眼镜的职场吐槽与假期宣言。",
+      "note": "以牛马戴眼镜的荒诞形象调侃职场生态，蓝绿色手绘与办公元素交织，镜片折射加班日常；「暂停常规，开启奇想模式」的假期主张配合 05.01-05.05 活动信息，幽默中带传播力。",
+      "image": "./assets/works/work-nioma.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "logo-minimal",
+      "title": "现代简约 LOGO 合集",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "12 枚现代简约风格品牌 LOGO 设计。",
+      "note": "一组成体系 logo：12 枚现代简约风格标志，以几何、留白与克制的线条塑造 VALERIAN、ORION、SÉLENE 等品牌形象，覆盖科技、时尚、家居等多行业，体现标志设计的系统化思路。",
+      "image": "./assets/works/work-logo-minimal.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "logo-serif",
+      "title": "轻奢衬线 LOGO 合集",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "15 枚轻奢衬线品牌 LOGO 设计。",
+      "note": "15 枚轻奢品牌标志，以衬线字体的优雅字形为核心，通过字距、衬线与金银色质感塑造 ALVORA、SOLÉA、BELVÉR 等高端品牌调性，适合美妆、香氛与精品零售场景。",
+      "image": "./assets/works/work-logo-serif.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "coffeeanywhere",
+      "title": "GOOD COFFEE ANYWHERE 海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "便携咖啡杯的潮流插画海报。",
+      "note": "便携咖啡杯拟人化设计：杯子穿着红鞋奔跑，背景蓝调做旧纹理配合城市天际线，「WORK/TRAVEL/LIFE」路标点明随时随地场景；保温保冷、防漏便携等卖点图形化呈现，活力十足。",
+      "image": "./assets/works/work-coffeeanywhere.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "coffeecreative",
+      "title": "COFFEE & CREATIVE DAY 海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "复古波普风咖啡创意日活动海报。",
+      "note": "复古波普风活动海报：戴墨镜的咖啡杯踩着滑板手持画笔，米黄底搭配粉黄蓝黑撞色，创意元素环绕；时间、地点、票价与活动内容信息完整，整体传达「唤醒创意」的派对氛围。",
+      "image": "./assets/works/work-coffeecreative.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "skatefest",
+      "title": "URBAN SKATE FEST 滑板节海报",
+      "category": "插画",
+      "year": "2025",
+      "desc": "滑手与黑猫的都市滑板节主视觉。",
+      "note": "都市滑板节主视觉：滑手与黑猫、涂鸦滑板构成街头叙事，皇冠元素贯穿服装、饮品与板面，蓝粉黄高饱和配色热烈自由；JUL 26-27、RIVERFRONT PARK 等活动信息清晰标注。",
+      "image": "./assets/works/work-skatefest.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "unseen",
+      "title": "EXPLORE THE UNSEEN 招募海报",
+      "category": "海报",
+      "year": "2024",
+      "desc": "复古科幻风的影视招募海报。",
+      "note": "复古科幻风影视招募海报：礼帽男子行走于漩涡光带，飞碟与星座符号点缀，米白、深红、黑配色叠加做旧质感；「探索感知的边界」的主题文案与 Casting Call 信息醒目，神秘而有张力。",
+      "image": "./assets/works/work-unseen.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "app-chongji",
+      "title": "「宠迹」宠物健康管理 App 全案",
+      "category": "UI",
+      "year": "2025",
+      "desc": "宠物健康管家：柯基 IP 与暖橙系完整产品体验。",
+      "note": "「宠迹」是一款专为宠物家长打造的全方位健康管理应用。设计以「懂它的每一天，陪它的一辈子」为核心主张，从情感陪伴出发构建整套产品视觉。品牌 IP 采用亲和力十足的柯基形象，贯穿引导页、功能页与社区互动，降低产品的使用门槛，也让每一次打开都更有温度。界面以暖橙为主色、米白与深灰为辅，营造温暖、可信赖的视觉氛围；健康记录、智能提醒、饮食建议、成长档案与社区交流五大模块分层清晰，图标与插画统一圆润语言，确保功能识别与情感表达并重。在信息架构上，用卡片化布局与留白控制信息密度，让健康数据一目了然；同时规范了色彩、字体（思源黑体/DIN Alternate）与组件体系，保证多端体验的一致性。整体设计兼顾科学养宠的专业感与陪伴成长的亲切感，是一套从品牌到界面完整落地的产品体验方案。",
+      "image": "./assets/works/work-app-chongji.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "app-xinglv",
+      "title": "「星旅计划」旅行规划助手 App",
+      "category": "UI",
+      "year": "2025",
+      "desc": "智能行程规划 + 预算管理的旅行助手。",
+      "note": "「星旅计划」是一款集智能行程规划、预算管理、灵感发现与旅途记录于一体的旅行助手应用。设计以深蓝与暖黄为主色，象征星空探索与温暖旅程，配合星球、星空与旅行人物插画，构建充满探索欲的产品气质。从引导页的「探索世界」叙事，到核心的行程规划、预算管理与旅途记录页面，完整覆盖用户出行前中后全流程；行程卡片、预算分布图与记录时间轴均以清晰的层级和统一的图形语言呈现，降低操作成本。灵感发现页以目的地故事激发出行冲动，分享体系鼓励记录与传播，形成体验闭环。字体与图标系统规范统一，确保信息在 iOS 与 Android 双端的一致呈现。整体设计将理性规划与感性探索融合，让每一次出发都更简单、更有趣、更难忘。",
+      "image": "./assets/works/work-app-xinglv.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "app-xinggui",
+      "title": "「星轨日记」情绪记录 App",
+      "category": "UI",
+      "year": "2025",
+      "desc": "情绪宇宙概念：让记录成为习惯、让情绪有归宿。",
+      "note": "「星轨日记」是一款结合情绪记录、日记、习惯养成与星空探索的治愈系应用。设计以「情绪宇宙」为核心概念：用户记录每日心情后，系统将其转化为一颗星球的成长轨迹，随着记录累积星球不断成长、解锁新的星域，让坚持变得可视、可感、可期待。视觉上以黑、橙、白为主色，配合星球、轨道与星尘图形，营造安静而有希望的宇宙氛围；心情选择、日历视图、日记列表与数据统计均采用圆润卡片与柔和过渡，弱化工具感，强化陪伴感。功能上整合情绪星球、习惯养成、行星音乐与隐私安全等模块，在觉察、表达、复盘之间建立完整链路。设计关键词「治愈、陪伴、成长、探索、记录」贯穿始终，整体以克制的配色与细腻的动效传递温度，帮助用户更好地认识自己、管理情绪。",
+      "image": "./assets/works/work-app-xinggui.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "vi-galaxio",
+      "title": "GALAXIO 太空探索品牌 VI",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "探索·连接·守护：深空蓝科技品牌全案视觉。",
+      "note": "GALAXIO 是一个以太空探索为定位的科技探索品牌，主张「探索·连接·守护」。整套 VI 以深空蓝为主色、活力红为强调色，配合白色构建宇宙级视觉秩序：标志以简洁的火箭与星球图形组合传达探索基因，字标选用 SPACE GROTESK 与思源黑体保证科技感与中文可读性；品牌吉祥物为不同姿态的卡通宇航员，贯穿应用示例、海报与界面，建立强识别符号。手册完整覆盖标志规范、色值、字体、图形元素、图标系统、移动端与网页端界面、品牌场景应用与延展图案，形成从基础系统到应用系统的闭环；海报以「探索、连接、守护」三主题延展叙事，周边产品与界面统一视觉语言。整体设计在科技感与亲和力之间取得平衡，为品牌进入市场提供了完整、可落地的视觉支撑。",
+      "image": "./assets/works/work-vi-galaxio.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "vi-ecohero",
+      "title": "ECOHERO 环保品牌 VI 手册",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "绿色生活方式品牌：小行动带来大改变。",
+      "note": "ECOHERO 是一个倡导环保行动的生活方式品牌，主张「一个小行动，带来大改变」。整套 VI 以自然绿为主色，白色、黑色与橙色为辅助色，传递清新、积极、可持续的品牌气质。手册从品牌介绍、使命与定位出发，系统规范了 LOGO 系统及其变体、最小使用尺寸与安全空间，确保标志在不同载体与尺寸下的规范应用；吉祥物为绿色卡通环保形象，以亲切的造型拉近品牌与公众的距离，并延伸至移动端界面等数字场景。色彩、字体与图形系统的规范保证品牌在传播物料中的一致性，应用示例覆盖包装、周边与数字体验等触点。整体设计以简洁、轻快的视觉语言将环保理念转化为可感知的品牌体验，鼓励每个人为地球采取行动。",
+      "image": "./assets/works/work-vi-ecohero.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "vi-novapulse",
+      "title": "NOVA PULSE 科技品牌 VI 手册",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "宇航员 IP PULSY：未来科技的想象与温度。",
+      "note": "NOVA PULSE 是一个探索未来的创新科技品牌，致力于用智能、连接与体验让世界更有趣、更高效、更美好。品牌核心视觉为卡通宇航员 IP「PULSY」，以灵动造型与亲和性格陪伴用户探索无限可能。VI 手册以深空蓝为底，电光青、脉冲粉、星耀黄等辅助色构建未来感色彩系统；标志、标准字（INTER/DIN NEXT）、图形与图标系统统一规范，确保品牌在科技语境下的识别效率。应用系统覆盖 APP 界面、海报、办公用品、环境导视与周边产品等多元场景，从启动页「HELLO, FUTURE」到海报「EXPLORE THE FUTURE」，品牌口号「LET'S PULSE」贯穿始终，强化品牌记忆点。整体设计在科技严谨与品牌温度之间形成张力，为品牌讲述了一个有想象力、可延展的视觉故事。",
+      "image": "./assets/works/work-vi-novapulse.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "vi-orbix",
+      "title": "ORBIX 活泼科技品牌 VI 手册",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "圆润球状视觉语言 + 明快撞色的年轻品牌。",
+      "note": "ORBIX 是一个以圆润球状视觉元素为核心的活泼科技品牌。整套视觉识别系统手册采用蓝、红、黄、青的明快配色，配合圆润的几何造型，传递年轻、灵动、友好的品牌气质。基础系统涵盖品牌标志及反白稿、标准色彩、字体规范（ORBITRON/思源黑体）、图形元素与辅助图形，建立清晰的视觉语言；应用系统完整展示名片、信封与信纸、手机界面、图标、社交媒体、空间与周边应用等落地场景，验证视觉系统在不同触点上的可延展性。标志以「ORB!X」的感叹号细节强化品牌记忆，辅助图形在各类物料中保持统一的节奏感。整体设计用轻松的色彩与圆润的造型，为品牌构建了一套既活泼又规范、易于记忆与传播的视觉识别系统。",
+      "image": "./assets/works/work-vi-orbix.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "vi-linkora",
+      "title": "Linkora 连接灵感品牌 VI 手册",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "PLAY · CONNECT · INSPIRE：理性与活力的平衡。",
+      "note": "Linkora 是一个以「连接·启发·创造」为理念的品牌，主张通过连接激发灵感。VI 手册以深海军蓝为主色、荧光绿为强调色，辅以亮蓝与淡紫，构建理性而富有活力的视觉系统。标志图形由符号与字母组成，象征连接、互动与灵感的汇聚；字体规范采用思源黑体系列，保证中文环境下的清晰传达。基础系统规范了标志组合与安全空间、色彩、字体、辅助图形与图标系统，应用系统覆盖名片、信封信纸、PPT 模板、包装、服饰徽章、数字应用、社交媒体与宣传物料，贯穿品牌与受众沟通的每一个触点。辅助图形以抽象的曲线、几何色块与点状元素灵活应用于各类物料，强化视觉个性。整体设计系统清晰、延展性强，确保品牌形象的一致性与辨识度。",
+      "image": "./assets/works/work-vi-linkora.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "vi-lynk",
+      "title": "Lynk 连接创造品牌 VI 手册",
+      "category": "品牌",
+      "year": "2025",
+      "desc": "外星机器人 IP + 深蓝亮绿的全触点规范。",
+      "note": "Lynk 是一个以「CONNECT·CREATE·CARE」为口号的连接创造品牌，视觉识别系统手册以深蓝与亮绿为主色，配合卡通外星机器人 IP 形象，构建兼具科技感与亲和力的品牌形象。基础系统完整规范了品牌标志、标准制图、标志组合与禁用规范，确保标志应用的严肃性与一致性；标准色与辅助色、字体（思源黑体/Poppins）、辅助图形与图标系统形成统一的视觉语言，吉祥物 IP 以活泼的造型承担品牌情感表达。应用系统覆盖名片、信封信纸、工牌、纽扣、APP 界面与图标、数据图表、社交界面、包装、环境导视与车身设计等多元场景，全面验证视觉系统在不同媒介上的落地效果。整体设计在规范与个性之间取得平衡，为品牌建立了完整、可执行的视觉识别体系。",
+      "image": "./assets/works/work-vi-lynk.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "gua-dragon",
+      "title": "「龙韵少年」国风潮流插画",
+      "category": "插画",
+      "year": "2025",
+      "desc": "红青撞色 × 少年与龙：传统美学的年轻表达。",
+      "note": "「龙韵少年」是一幅融合传统国风与当代潮流的插画作品。画面以红青撞色的斜纹背景与明黄边框奠定强烈的视觉张力，少年身着融合传统纹样与现代服饰的穿搭，倚靠木质台面、手持茶杯，神情悠然，传递「新旧交融」的生活态度；身后盘踞的青绿巨龙以红金点缀，威严而不失灵动，与少年的松弛形成有趣对比。细节上，茶壶、折扇、书卷、山水画卷、灯笼与海浪纹样共同构建东方意境，而复古背包与潮流单品则注入现代气息，背景的云海古建与仙鹤进一步拓展画面的叙事纵深。作品尝试用插画语言探讨「传统如何在当代重新被看见」——它不是简单的元素堆砌，而是以构图、配色与造型的统一，让东方美学以更年轻、更潮流的方式被接受。",
+      "image": "./assets/works/work-gua-dragon.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "gua-luck",
+      "title": "「好运少女」国风潮流插画",
+      "category": "插画",
+      "year": "2025",
+      "desc": "红蓝撞色 × 福运主题：传统祝福的潮流演绎。",
+      "note": "「好运少女」以红、蓝、米黄为主色调，描绘一位身着红纹古风外袍、搭配休闲白裤与潮流运动鞋的少女，手托脸颊、姿态闲适，身旁黑白猫咪佩戴福字项圈，画面充满「被好运包围」的松弛感。身后青蓝带金纹的巨龙、红日、祥云与盛开的红牡丹构成东方吉祥意象，红灯笼与「福」字点缀强化节庆氛围；同时画面融入书籍、笔记本电脑、咖啡杯、纸笔等现代物件，以及「新的每一天」「好运常在」「计划·行动·成长」「更好的自己·从现在开始」等励志文案，将传统祝福与现代生活态度并置。作品在构图与配色上追求热闹而不失秩序，用潮流插画的表达方式重新演绎国风吉祥主题，传递出自我成长、积极向上的生活信念。",
+      "image": "./assets/works/work-gua-luck.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "poster-cf-vintage",
+      "title": "「Good Coffee Better Days」复古咖啡海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "日式复古潮流：一杯咖啡与美好生活。",
+      "note": "「Good Coffee Better Days」是一张复古潮流风格的咖啡主题海报。画面以橙、红、青为主色，暖黄色底配合放射状线条与日式富士山、红日元素，营造浓郁的上世纪复古海报质感。主体人物戴墨镜、红帽、身着红色外套，坐在咖啡木箱上悠闲举杯，身旁戴红镜片眼镜的猫咪与堆满的咖啡豆强化场景的生活气息；后方巨型咖啡杯印有主题标语并升起袅袅热气，成为画面的视觉锚点。左侧咖啡品类列表与右侧「现磨咖啡」等文字信息以复古印刷排布，兼顾商业信息与装饰美感。作品尝试用「咖啡=美好生活」的通俗叙事，通过强对比撞色、粗线条与做旧质感，让复古潮流成为品牌沟通的独特记忆点。",
+      "image": "./assets/works/work-poster-cf-vintage.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "poster-cf-street",
+      "title": "「街头咖啡」潮流插画海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "街头艺术 × 咖啡文化：松弛有态度的画面。",
+      "note": "这是一幅街头潮流风格的咖啡主题插画海报。画面以暖黄为底，橙红与青蓝撞色构成强烈视觉冲击，卷发少年身着橙红棉服、补丁牛仔裤与潮牌运动鞋席地而坐，身旁咖啡杯、麻袋与散落的咖啡豆、咖啡花、咖啡果构建完整的咖啡语境；身后巨型拟人化咖啡杯被一只大手托举，大眼睛与冒热气的杯口赋予角色生命力，与少年形成轻松有趣的互动。背景的咖啡门店街景、红白条纹遮阳篷、落日与放射状线条共同营造街头文化的氛围，粗犷的线条与复古印刷质感让画面充满手作的温度。作品将咖啡文化与街头艺术结合，以夸张的角色造型和丰富的细节层次，传递年轻、松弛、有态度的咖啡消费情绪。",
+      "image": "./assets/works/work-poster-cf-street.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "poster-cf-yuanqi",
+      "title": "「元气咖啡」国潮卡通海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "一杯好咖啡，开启元气一天。",
+      "note": "「一杯好咖啡，开启元气一天」是一张国潮风格的咖啡主题商业插画海报。主角为拟人化咖啡杯卡通形象，头戴棒球帽、墨镜，脚踩滑板，表情活泼张扬，以动感姿态强化「元气」主题；两侧的白色猫咪与戴绿帽小熊卡通形象丰富画面趣味，背景融合城市建筑与咖啡豆、咖啡树、咖啡花等元素，外卖小哥骑电动车配送的画面直观传达「快速配送」的产品卖点。配色以明快的撞色为主，线条圆润、造型讨喜，信息分区清晰：主标题、好心情标语与香醇浓郁、现磨新鲜、快速配送等卖点标签层次分明，底部「现在就来喝一杯」形成行动号召。作品用国潮插画语言，将咖啡消费转化为一种活力四射、充满好心情的生活方式表达。",
+      "image": "./assets/works/work-poster-cf-yuanqi.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "poster-cf-planet",
+      "title": "「咖啡星球」复古科幻海报",
+      "category": "海报",
+      "year": "2025",
+      "desc": "这杯咖啡，为你而来：科幻叙事注入仪式感。",
+      "note": "「这杯咖啡，为你而来」是一张复古科幻风格的咖啡商业宣传海报。画面以黑、米白与棕褐为主色，营造老式科幻电影般的怀旧氛围：巨型咖啡杯居于视觉中心，咖啡液如星云般环绕杯身，宇航员、星球与火箭等太空元素点缀其间，暗示咖啡带来的探索与能量；下方咖啡门店与咖啡师形象建立真实的消费场景。海报以左右分栏结构系统传达卖点——精选全球优质咖啡豆、匠心烘焙、新鲜研磨、多种风味，以及随时随地享受咖啡时刻、精品包装、会员专享、安心品质等服务承诺，信息层级清晰、阅读节奏舒适；底部「下单即享专属咖啡时光」与每日打卡计划强化转化引导。作品以科幻叙事为咖啡注入想象力和仪式感，在商业传播中形成鲜明差异。",
+      "image": "./assets/works/work-poster-cf-planet.webp",
+      "aspect": "4 / 5"
+    },
+    {
+      "id": "w-1789483977915",
+      "image": "./assets/works/work-newday.webp",
+      "title": "新的一天",
+      "category": "海报",
+      "year": "2026",
+      "desc": "唤醒每一天新的生活",
+      "note": "本咖啡商业海报采用复古拼贴视觉语言，以 “唤醒日常能量” 为核心商业主题，面向追求品质生活的年轻消费群体。画面选取橙、黑、米白的高对比配色，橙色作为品牌识别色，传递活力氛围，黑色强化质感，搭配颗粒噪点、印刷做旧肌理，塑造潮流复古的高级视觉调性。\n\n构图运用非对称几何分割，中心视觉聚焦动态咖啡液与咖啡杯，咖啡豆作为点缀强化品类识别。中英文信息分层排布，主标语、产品卖点与品牌 slogan 有序分布，兼顾艺术表现力与商业信息传递效率。\n\n作品将咖啡提神赋能的产品价值可视化，通过富有张力的视觉语言吸引受众注意力，在传递品牌调性的同时，激发消费欲，实现艺术审美与商业宣传的平衡。"
+    },
+    {
+      "id": "w-1789484079411",
+      "image": "./assets/works/work-wateridea.webp",
+      "title": "水的想法",
+      "category": "海报",
+      "year": "2026",
+      "desc": "每一天的开始都可以喝一杯水，换一个新的态度面对生活",
+      "note": "本海报采用美式波普复古漫画风格，以 “多喝水，给生活加点水分” 为核心传播主题，面向年轻消费群体，旨在将饮水健康理念年轻化、潮流化。画面选用高饱和度黄、青、玫粉撞色搭配，视觉冲击力强烈，复刻丝网印刷网点肌理与手绘涂鸦质感，塑造鲜活松弛的潮流视觉语言。\n\n构图以拟人化水杯 IP 形象为绝对视觉中心，活泼动态的造型强化记忆点。多区块信息模块化排布，中英文标语、健康卖点与装饰图形有序穿插，兼顾趣味性与商业信息传递效率。\n\n作品打破传统健康科普的沉闷感，把饮水健康转化为潮流生活态度，借充满活力的视觉语言拉近与受众距离，传递健康生活主张，实现品牌价值表达与大众情感共鸣的统一。"
+    },
+    {
+      "id": "w-1789484215452",
+      "image": "./assets/works/work-go.webp",
+      "title": "说走就走",
+      "category": "海报",
+      "year": "2026",
+      "desc": "有想法就行动，随时出发，为你而方便",
+      "note": "本海报采用美式复古波普漫画风格，以 “能量满格，随行而动” 为核心商业主题。高饱和橙绿撞色，搭配丝网印刷网点肌理，视觉张力强烈。画面以拟人化充电宝 IP 形象为视觉中心，动感造型强化产品记忆点。模块化排布产品参数与卖点，将快充、大容量等核心优势直观传递，契合年轻消费群体审美，塑造潮流数码产品形象，实现商业宣传与情感表达的统一。"
+    }
+  ]
+};
