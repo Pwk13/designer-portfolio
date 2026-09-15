@@ -4,7 +4,7 @@ import Reveal from './Reveal'
 
 /** 项目展示模块：横屏平滑滚动作品墙 + 点击放大 + 设计说明 + 编辑增删 */
 export default function Works() {
-  const { profile, editMode, removeWork, addCategory, addWork } = useEdit()
+  const { profile, editMode, removeWork, addCategory, addWork, moveWork } = useEdit()
   const [filter, setFilter] = useState('全部')
   const [selected, setSelected] = useState(null) // 点击放大的作品
   const [addOpen, setAddOpen] = useState(false) // 添加作品弹窗
@@ -198,15 +198,39 @@ export default function Works() {
           {list.map((w, i) => (
             <article className="work-card" key={w.id}>
               {editMode && (
-                <button
-                  className="work-card__del"
-                  onClick={() => {
-                    if (window.confirm(`确定删除作品「${w.title}」？`)) removeWork(w.id)
-                  }}
-                  title="删除作品"
-                >
-                  ✕
-                </button>
+                <div className="work-card__tools">
+                  <button
+                    className="work-card__mv"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      moveWork(w.id, -1, filter !== '全部')
+                    }}
+                    title="向前移动一位"
+                    aria-label="向前移动一位"
+                  >
+                    ◀
+                  </button>
+                  <button
+                    className="work-card__mv"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      moveWork(w.id, 1, filter !== '全部')
+                    }}
+                    title="向后移动一位"
+                    aria-label="向后移动一位"
+                  >
+                    ▶
+                  </button>
+                  <button
+                    className="work-card__del"
+                    onClick={() => {
+                      if (window.confirm(`确定删除作品「${w.title}」？`)) removeWork(w.id)
+                    }}
+                    title="删除作品"
+                  >
+                    ✕
+                  </button>
+                </div>
               )}
               <div className="work-card__media" onClick={() => openLightbox(w)}>
                 <img

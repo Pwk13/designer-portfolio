@@ -135,6 +135,29 @@ export function EditProvider({ children }) {
     [persist],
   )
 
+  /* 调整作品位置：dir=-1 前移 / dir=1 后移；sameCat=true 时只在同分类内移动（筛选视图），否则按所见顺序相邻交换 */
+  const moveWork = useCallback(
+    (id, dir, sameCat = false) => {
+      setOverrides((prev) => {
+        const arr = [...profileRef.current.works]
+        const i = arr.findIndex((w) => w.id === id)
+        if (i < 0) return prev
+        let j = i + dir
+        if (sameCat) {
+          while (j >= 0 && j < arr.length && arr[j].category !== arr[i].category) j += dir
+        }
+        if (j < 0 || j >= arr.length) return prev // 已到边界
+        const tmp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = tmp
+        const next = { ...prev, works: arr }
+        persist(next)
+        return next
+      })
+    },
+    [persist],
+  )
+
   /* 添加作品分类（去重） */
   const addCategory = useCallback(
     (name) => {
@@ -239,8 +262,8 @@ export function EditProvider({ children }) {
   }, [editMode, save])
 
   const value = useMemo(
-    () => ({ profile, editMode, setEditMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, addCategory, savedAt, saveFailed }),
-    [profile, editMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, addCategory, savedAt, saveFailed],
+    () => ({ profile, editMode, setEditMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, moveWork, addCategory, savedAt, saveFailed }),
+    [profile, editMode, save, resetAll, exportJSON, importJSON, addWork, removeWork, moveWork, addCategory, savedAt, saveFailed],
   )
 
   return <EditContext.Provider value={value}>{children}</EditContext.Provider>
